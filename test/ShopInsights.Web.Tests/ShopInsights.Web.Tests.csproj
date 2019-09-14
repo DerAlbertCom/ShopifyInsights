@@ -6,6 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\ShopInsights.Web\ShopInsights.Web.csproj" />
-  </ItemGroup>
+</ItemGroup>
 
 </Project>

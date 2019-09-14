@@ -1,7 +1,7 @@
 ﻿<Project>
   <!-- these are the global nuget packages which should be used for every unit testing project, add a Directory.Builds.props file which imports this file-->
   <ItemGroup>
-    <PackageReference Include="BioNTech.Extensions.Fakes" Version="0.9.0" />
+    <PackageReference Include="DerAlbert.Extensions.Fakes" Version="0.1.0" />
     <PackageReference Include="FluentAssertions" Version="5.7.0" />
     <PackageReference Include="xunit.core" Version="2.4.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.1">

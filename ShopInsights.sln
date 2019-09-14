@@ -10,10 +10,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopInsights.Web", "src\ShopInsights.Web\ShopInsights.Web.csproj", "{AC4EED64-6D22-4706-89C6-941516840278}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AF454FA6-3F44-4D58-A213-004A2ABF9389}"
+ProjectSection(SolutionItems) = preProject
+	test\Directory.Build.props = test\Directory.Build.props
+EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopInsights.Core.Tests", "test\ShopInsights.Core.Tests\ShopInsights.Core.Tests.csproj", "{6CA2D01C-9A34-4DD3-8D72-51217FA99972}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopInsights.Web.Tests", "test\ShopInsights.Web.Tests\ShopInsights.Web.Tests.csproj", "{AF3136CA-CF1F-4459-95CB-6BB3BC0CBEFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{DA674ED0-76F7-4674-B83B-C90374DCA159}"
+ProjectSection(SolutionItems) = preProject
+	Directory.Build.props = Directory.Build.props
+	dotnet-test.Build.props = dotnet-test.Build.props
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
