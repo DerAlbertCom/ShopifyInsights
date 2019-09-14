@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ShopifySharp;
 
 namespace ShopInsights.Core.Services
 {
-    public class OrderUpdater
+    internal class OrderUpdater
     {
-        public void Update(Dictionary<int, Order> orders, Order order)
+        public void AddOrUpdate(OrderDictionary orders, Order order)
         {
             if (!order.OrderNumber.HasValue)
             {
@@ -21,6 +22,26 @@ namespace ShopInsights.Core.Services
                 }
             }
             orders[order.OrderNumber.Value] = order;
+            ModifiedOrder(order);
         }
+
+        void ModifiedOrder(Order order)
+        {
+            if (!order.CreatedAt.HasValue)
+            {
+                return;
+            }
+
+            var date = order.CreatedAt.Value.Date;
+
+            if (ModifiedDates.Contains(date))
+            {
+                return;
+            }
+
+            ModifiedDates.Add(date);
+        }
+
+        public ISet<DateTime> ModifiedDates { get; } = new HashSet<DateTime>();
     }
 }
