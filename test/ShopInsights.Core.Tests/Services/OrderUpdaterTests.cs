@@ -9,12 +9,7 @@ namespace ShopInsights.Core.Tests.Services
 {
     public class OrderUpdaterTests
     {
-        public OrderUpdaterTests()
-        {
-            Subject = new OrderUpdater();
-        }
-
-        OrderUpdater Subject { get; }
+        OrderUpdater Subject { get; } = new OrderUpdater();
 
         [Fact]
         public void Should_add_the_Order_if_it_not_exists()
@@ -36,9 +31,6 @@ namespace ShopInsights.Core.Tests.Services
 
 
         }
-
-
-
 
         [Fact]
         public void Should_add_a_second_order_if_it_not_exists()
@@ -155,6 +147,7 @@ namespace ShopInsights.Core.Tests.Services
                 OrderNumber = 2,
                 UpdatedAt = DateTimeOffset.Now
             };
+
             var order2 = new Order()
             {
                 CreatedAt = new DateTimeOffset(2019, 09, 14, 12, 12, 12, TimeSpan.FromHours(0)),

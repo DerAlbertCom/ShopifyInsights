@@ -24,6 +24,8 @@ ProjectSection(SolutionItems) = preProject
 	dotnet-test.Build.props = dotnet-test.Build.props
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopInsights.Infrastructure", "src\ShopInsights.Infrastructure\ShopInsights.Infrastructure.csproj", "{8158E344-AAC7-47DB-982E-2E137647291D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,11 +87,24 @@ Global
 		{AF3136CA-CF1F-4459-95CB-6BB3BC0CBEFD}.Release|x64.Build.0 = Release|Any CPU
 		{AF3136CA-CF1F-4459-95CB-6BB3BC0CBEFD}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF3136CA-CF1F-4459-95CB-6BB3BC0CBEFD}.Release|x86.Build.0 = Release|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Debug|x64.Build.0 = Debug|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Debug|x86.Build.0 = Debug|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Release|x64.ActiveCfg = Release|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Release|x64.Build.0 = Release|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Release|x86.ActiveCfg = Release|Any CPU
+		{8158E344-AAC7-47DB-982E-2E137647291D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FB0198D8-7941-4563-98E3-BBFBEABABC58} = {B052814F-FA60-4B7F-A31C-E6FD79A7D2C5}
 		{AC4EED64-6D22-4706-89C6-941516840278} = {B052814F-FA60-4B7F-A31C-E6FD79A7D2C5}
 		{6CA2D01C-9A34-4DD3-8D72-51217FA99972} = {AF454FA6-3F44-4D58-A213-004A2ABF9389}
 		{AF3136CA-CF1F-4459-95CB-6BB3BC0CBEFD} = {AF454FA6-3F44-4D58-A213-004A2ABF9389}
+		{8158E344-AAC7-47DB-982E-2E137647291D} = {B052814F-FA60-4B7F-A31C-E6FD79A7D2C5}
 	EndGlobalSection
 EndGlobal

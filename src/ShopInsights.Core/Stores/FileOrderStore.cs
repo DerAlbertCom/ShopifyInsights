@@ -24,7 +24,7 @@ namespace ShopInsights.Core.Stores
 
             var fileProvider = new PhysicalFileProvider(_optionsAccessor.Value.ImportPath);
             var files = fileProvider.GetDirectoryContents("./").Where(IsOrderFile).ToArray();
-            var serializer = JsonSerializer.Create();
+                                                                 var serializer = JsonSerializer.Create();
             foreach (var file in files)
             {
                 using (var streamReader = new StreamReader(file.CreateReadStream()))
