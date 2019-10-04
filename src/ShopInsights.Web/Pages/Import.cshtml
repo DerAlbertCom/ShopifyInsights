@@ -1,0 +1,17 @@
+﻿@page
+@model ShopInsights.Web.Pages.Import
+
+@{
+    ViewData["Title"] = "Import";
+}
+
+@if (Model.ShowImport)
+{
+    <form asp-page-handler="Import">
+        <button type="submit">Import Existing Data</button>
+    </form>
+}
+
+<form asp-page-handler="Update">
+    <button type="submit">Update from Shopify</button>
+</form>

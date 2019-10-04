@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using ShopInsights.Core;
+using ShopInsights.Core.Stores;
+using ShopInsights.Infrastructure;
 
 namespace ShopInsights.Web
 {
@@ -18,12 +22,21 @@ namespace ShopInsights.Web
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddInfrastructureServices();
+            services.AddCoreServices();
+            ConfigureOptions(services);
+        }
+
+        private void ConfigureOptions(IServiceCollection services)
+        {
+            services.AddTransient<IValidateOptions<OrderStoreOptions>, OrderStoreOptionsValidator>();
+            services.Configure<OrderStoreOptions>(Configuration.GetSection("Shop:OrderStore"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

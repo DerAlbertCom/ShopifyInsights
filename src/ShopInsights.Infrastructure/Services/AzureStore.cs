@@ -11,7 +11,7 @@ namespace ShopInsights.Infrastructure.Services
 {
     internal class AzureStore : IStore
     {
-        readonly IAzureTokenProvider _tokenProvider;
+        private readonly IAzureTokenProvider _tokenProvider;
 
         public AzureStore(IAzureTokenProvider tokenProvider)
         {
@@ -43,7 +43,7 @@ namespace ShopInsights.Infrastructure.Services
             return true;
         }
 
-        async Task<CloudBlobContainer> GetBlobContainer()
+        private async Task<CloudBlobContainer> GetBlobContainer()
         {
             var accessToken = await _tokenProvider.GetBlobStorageAccessTokenAsync();
             var tokenCredential = new TokenCredential(accessToken);

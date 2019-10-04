@@ -3,6 +3,6 @@
     public class OrderStoreOptions
     {
         public string ImportPath { get; set; }
-        public string Folder { get; set; }
+        public string StorageFolder { get; set; }
     }
 }

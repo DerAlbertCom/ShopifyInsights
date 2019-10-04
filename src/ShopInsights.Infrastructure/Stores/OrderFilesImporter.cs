@@ -6,19 +6,20 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ShopifySharp;
+using ShopInsights.Core.Models;
+using ShopInsights.Core.Stores;
 
-namespace ShopInsights.Core.Stores
+namespace ShopInsights.Infrastructure.Stores
 {
-    public class FileOrderStore
+    public class OrderFilesImporter : IOrderFilesImporter
     {
-        readonly IOptionsSnapshot<OrderStoreOptions> _optionsAccessor;
-
-        public FileOrderStore(IOptionsSnapshot<OrderStoreOptions> optionsAccessor)
+        public OrderFilesImporter(IOrderStorage orderStorage, IOptionsSnapshot<OrderStoreOptions> optionsAccessor)
         {
+            _orderStorage = orderStorage;
             _optionsAccessor = optionsAccessor;
         }
 
-        public Task<OrderDictionary> ImportExistingOrdersAsync()
+        public Task ImportExistingOrdersAsync()
         {
             var orders = new OrderDictionary();
 
@@ -31,22 +32,19 @@ namespace ShopInsights.Core.Stores
                 {
                     var jsonReader = new JsonTextReader(streamReader);
                     var existingOrders = serializer.Deserialize<Order[]>(jsonReader);
-                    UpdateOrders(orders, existingOrders);
+                    UpdateOrders(existingOrders);
                 }
             }
 
-            return Task.FromResult(orders);
+            return Task.CompletedTask;
         }
 
-        void UpdateOrders(OrderDictionary orders, Order[] existingOrders)
+        private void UpdateOrders(Order[] existingOrders)
         {
-            foreach (var existingOrder in existingOrders)
-            {
-                orders.AddOrUpdate(existingOrder);
-            }
+            _orderStorage.AddOrders(existingOrders);
         }
 
-        bool IsOrderFile(IFileInfo fileInfo)
+        private bool IsOrderFile(IFileInfo fileInfo)
         {
             if (fileInfo.IsDirectory)
             {
@@ -59,5 +57,8 @@ namespace ShopInsights.Core.Stores
             }
             return (fileInfo.Name.EndsWith(".json", StringComparison.OrdinalIgnoreCase));
         }
+
+        private readonly IOrderStorage _orderStorage;
+        private readonly IOptionsSnapshot<OrderStoreOptions> _optionsAccessor;
     }
 }

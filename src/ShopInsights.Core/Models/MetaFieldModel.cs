@@ -1,6 +1,6 @@
 ﻿﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShopifyMetaFieldEditor.Models
+ namespace ShopInsights.Core.Models
 {
     public class MetaFieldModel
     {

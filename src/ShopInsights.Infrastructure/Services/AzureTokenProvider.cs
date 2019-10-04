@@ -5,7 +5,7 @@ namespace ShopInsights.Infrastructure.Services
 {
     public class AzureTokenProvider : IAzureTokenProvider
     {
-        readonly AzureServiceTokenProvider tokenProvider = new AzureServiceTokenProvider();
+        private readonly AzureServiceTokenProvider tokenProvider = new AzureServiceTokenProvider();
         public async Task<string> GetDatabaseAccessTokenAsync()
         {
             return await tokenProvider.GetAccessTokenAsync("https://database.windows.net/");

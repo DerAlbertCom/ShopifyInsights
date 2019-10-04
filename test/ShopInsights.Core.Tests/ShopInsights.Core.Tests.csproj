@@ -8,4 +8,8 @@
     <ProjectReference Include="..\..\src\ShopInsights.Core\ShopInsights.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Stores" />
+  </ItemGroup>
+
 </Project>

@@ -12,10 +12,10 @@ namespace ShopInsights.Infrastructure.Services
 {
     internal class CachedOrderService : ICachedOrderService
     {
-        readonly IShopifyFactory _shopifyFactory;
-        readonly IHostEnvironment _environment;
-        readonly IStore _store;
-        readonly IFileProvider _fileProvider;
+        private readonly IShopifyFactory _shopifyFactory;
+        private readonly IHostEnvironment _environment;
+        private readonly IStore _store;
+        private readonly IFileProvider _fileProvider;
 
         public CachedOrderService(IShopifyFactory shopifyFactory, IHostEnvironment environment, IStore store)
         {
@@ -55,7 +55,7 @@ namespace ShopInsights.Infrastructure.Services
             return orders;
         }
 
-        IEnumerable<Order> ReadJson(IFileInfo jsonFile)
+        private IEnumerable<Order> ReadJson(IFileInfo jsonFile)
         {
             using (var sr = new StreamReader(jsonFile.CreateReadStream()))
             using (JsonReader reader = new JsonTextReader(sr))
@@ -65,7 +65,7 @@ namespace ShopInsights.Infrastructure.Services
             }
         }
 
-        void WriteJson(IEnumerable<Order> orders, IFileInfo fileInfo)
+        private void WriteJson(IEnumerable<Order> orders, IFileInfo fileInfo)
         {
 
             using (var streamWriter = new StreamWriter(fileInfo.PhysicalPath))
