@@ -51,7 +51,7 @@ namespace ShopInsights.Core.Tests.Models
         }
 
         [Fact]
-        public void Should_set_modified_date_on_update()
+        public void Should_set_modified_date_on_update_and_add()
         {
             var orderA = CreateOrder(1, 2019, 3, 2);
             var orderB = CreateOrder(2, 2019, 3, 3);
@@ -75,9 +75,10 @@ namespace ShopInsights.Core.Tests.Models
 
             var dates = Subject.ModifiedDates.ToArray();
 
-            dates.Length.Should().Be(1);
+            dates.Length.Should().Be(2);
 
-            dates[0].Day.Should().Be(3);
+            dates[0].Day.Should().Be(2);
+            dates[1].Day.Should().Be(3);
         }
 
         [Fact]
@@ -90,6 +91,9 @@ namespace ShopInsights.Core.Tests.Models
             orderB2.UpdatedAt = new DateTimeOffset(2019, 3, 5, 10, 0, 0, _offset);
 
             Subject.AddOrders(new[] {orderB});
+
+            Subject.ResetModifiedDates();
+
             Subject.AddOrders(new[] {orderB2});
 
             var result = Subject.GetOrdersForDate(new DateTime(2019, 3, 3));
@@ -136,6 +140,9 @@ namespace ShopInsights.Core.Tests.Models
             orderB2.UpdatedAt = new DateTimeOffset(2019, 3, 3, 10, 0, 0, _offset);
 
             Subject.AddOrders(new[] {orderB});
+
+            Subject.ResetModifiedDates();
+
             Subject.AddOrders(new[] {orderB2});
 
             var result = Subject.GetOrdersForDate(new DateTime(2019, 3, 3));

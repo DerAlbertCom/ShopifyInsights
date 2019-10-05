@@ -1,0 +1,52 @@
+﻿@page
+@model ShopInsights.Web.Pages.Reports.Index
+
+@{
+    ViewData["Title"] = "Berichte";
+}
+
+<canvas id="chart" width="400" height="200"></canvas>
+
+@section scripts
+{
+<script>
+    let myChart = null;
+    function setChar(data) {
+        myChart = new Chart('chart', {
+        type: 'line',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: 'Umsatz',
+                data: data.data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    })}
+
+    fetch('/api/reports/sales?from=2019-01-01')
+    .then(response => {
+       response.json().then(result=>{
+            setChar(result);
+       })
+    });
+
+</script>
+
+}

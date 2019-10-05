@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopInsights.Core.Models;
@@ -19,9 +20,9 @@ namespace ShopInsights.Web.Pages
 
         }
 
-        public async Task OnPostImport()
+        public async Task OnPostImport(CancellationToken cancellationToken)
         {
-            await _importer.ImportExistingOrdersAsync();
+            await _importer.ImportExistingOrdersAsync(cancellationToken);
         }
 
         public Task OnPostUpdate()

@@ -34,8 +34,7 @@ namespace ShopInsights.Core.Models
         {
             get
             {
-                var dates = _dictionary.Keys.OrderBy(d => d);
-                foreach (var date in dates)
+                foreach (var date in AllDates)
                 {
                     var orders = GetOrderDictionary(date).Values.OrderBy(o => o.OrderNumber);
                     foreach (var order in orders)
@@ -45,6 +44,8 @@ namespace ShopInsights.Core.Models
                 }
             }
         }
+
+        public IEnumerable<DateTime> AllDates => _dictionary.Keys.OrderBy(d => d);
 
         public void ResetModifiedDates()
         {
@@ -77,6 +78,7 @@ namespace ShopInsights.Core.Models
                 else
                 {
                     orderDictionary.Add(newOrder);
+                    UpdateModifiedDate(newOrder);
                 }
             }
         }

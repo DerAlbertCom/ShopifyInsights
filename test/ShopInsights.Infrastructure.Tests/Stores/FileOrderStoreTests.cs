@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using DerAlbert.Extensions.Fakes;
 using FluentAssertions;
@@ -29,7 +30,7 @@ namespace ShopInsights.Infrastructure.Tests.Stores
                         "C:\\dev\\private\\ShopifyMetaFieldEditor\\ShopifyMetafieldEditor";
                 });
 
-            await Subject.ImportExistingOrdersAsync();
+            await Subject.ImportExistingOrdersAsync(CancellationToken.None);
 
             The<IOrderStorage>().AllOrders.Count().Should().Be(666);
         }

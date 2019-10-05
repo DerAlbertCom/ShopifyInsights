@@ -12,13 +12,17 @@ using Microsoft.Extensions.Options;
 using ShopInsights.Core;
 using ShopInsights.Core.Stores;
 using ShopInsights.Infrastructure;
+using ShopInsights.Web.Stores;
 
 namespace ShopInsights.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IHostEnvironment _hostEnvironment;
+
+        public Startup(IConfiguration configuration, IHostEnvironment hostEnvironment)
         {
+            _hostEnvironment = hostEnvironment;
             Configuration = configuration;
         }
 
@@ -28,9 +32,21 @@ namespace ShopInsights.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
+
             services.AddInfrastructureServices();
             services.AddCoreServices();
+
             ConfigureOptions(services);
+            ConfigureBackgroundServices(services);
+        }
+
+        private void ConfigureBackgroundServices(IServiceCollection services)
+        {
+            if (_hostEnvironment.IsDevelopment())
+            {
+                services.AddHostedService<DevelopmentFileImporter>();
+            }
         }
 
         private void ConfigureOptions(IServiceCollection services)
@@ -62,6 +78,7 @@ namespace ShopInsights.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }
