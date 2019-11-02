@@ -13,7 +13,7 @@
 import Vue from 'vue'
 import LineChart from './LineChart'
 import { ChartData, ChartOptions } from 'chart.js';
-interface IData {
+type IData = {
   dataCollection: ChartData,
   chartOptions: ChartOptions,
   height: number
@@ -23,9 +23,9 @@ const Sales = Vue.extend({
   components: {
     LineChart
   },
-  data () {
+  data () : IData {
     return {
-      dataCollection: null,
+      dataCollection: {},
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -39,6 +39,15 @@ const Sales = Vue.extend({
         }
       },
       height: 600
+    }
+  },
+  computed: {
+    styles () {
+      return {
+        // @ts-ignore
+        height: `${this.height}px`,
+        position: 'relative'
+      }
     }
   },
   async mounted () {
@@ -62,14 +71,6 @@ const Sales = Vue.extend({
           ],
           borderWidth: 1
         }]
-      }
-    }
-  },
-  computed: {
-    styles () {
-      return {
-        height: `${this.height}px`,
-        position: 'relative'
       }
     }
   }
