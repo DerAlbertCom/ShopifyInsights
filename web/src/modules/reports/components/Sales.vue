@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import LineChart from './LineChart'
+import LineChart from '@/components/LineChart'
 import { ChartData, ChartOptions } from 'chart.js';
 type IData = {
   dataCollection: ChartData,

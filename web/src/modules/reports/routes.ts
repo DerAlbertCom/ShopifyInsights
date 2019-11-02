@@ -16,6 +16,11 @@ const routes: RouteConfig = {
       path: '',
       name: 'reports',
       component: () => import(/* webpackChunkName: "Reports" */ './Reports.vue')
+    },
+    {
+      path: 'map',
+      name: 'reports-map',
+      component: () => import(/* webpackChunkName: "Reports" */ './Map.vue')
     }
   ]
 }

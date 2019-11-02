@@ -22,6 +22,10 @@ namespace ShopInsights.Core.Services.Shopify
             {
                 Order = "updated_at asc",
                 Limit = 200,
+                FulfillmentStatus = "any",
+                FinancialStatus = "any",
+                Status = "any",
+
                 UpdatedAtMin =  sinceDate.Subtract(TimeSpan.FromSeconds(1))
             };
             var orders = await _orderService.ListAsync(filter);

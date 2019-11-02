@@ -22,6 +22,8 @@ namespace ShopInsights.Core.Services.Shopify
             {
                 Order = "updated_at asc",
                 Limit = 200,
+                PublishedStatus = "any",
+
                 UpdatedAtMin =  sinceDate.Subtract(TimeSpan.FromSeconds(1))
             };
             var products = await _productService.ListAsync(filter);

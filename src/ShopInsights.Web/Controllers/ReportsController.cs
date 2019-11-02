@@ -31,14 +31,14 @@ namespace ShopInsights.Web.Controllers
             var list = new List<(DateTime date, decimal sum)>();
             var current = from.Value;
 
-            Func<Order, bool> filter = AllOrders;
+            Func<Order, bool> filter = NotCancelledOrder;
             if (string.IsNullOrWhiteSpace(location))
             {
-                filter = OnlineOrders;
+                filter = OnlineOrder;
             }
             else if (long.TryParse(location, out var locationId))
             {
-                filter = order => LocationOrders(order, locationId);
+                filter = order => OrderOnLocation(order, locationId);
             }
 
             while (current <= to.Value)
@@ -56,19 +56,29 @@ namespace ShopInsights.Web.Controllers
             };
             return model;
 
-            static bool AllOrders(Order order)
+            static bool NotCancelledOrder(Order order)
             {
-                return true;
+                return !string.Equals(order.FinancialStatus, "voided", StringComparison.OrdinalIgnoreCase);
             }
 
-            static bool OnlineOrders(Order order)
+            static bool OnlineOrder(Order order)
             {
-                return !order.LocationId.HasValue;
+                if (!order.LocationId.HasValue)
+                {
+                    return NotCancelledOrder(order);
+                }
+
+                return false;
             }
 
-            static bool LocationOrders(Order order, long locationId)
+            static bool OrderOnLocation(Order order, long locationId)
             {
-                return order.LocationId.HasValue && order.LocationId.Value == locationId;
+                if (order.LocationId.HasValue && order.LocationId.Value == locationId)
+                {
+                    return NotCancelledOrder(order);
+                }
+
+                return false;
             }
         }
 
