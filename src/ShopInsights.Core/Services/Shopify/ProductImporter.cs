@@ -30,12 +30,6 @@ namespace ShopInsights.Core.Services.Shopify
 
             IReadOnlyCollection<Product> loadedProducts;
 
-            var filter = new ProductFilter()
-            {
-                Order = "updated_at asc",
-                Limit = 200,
-                UpdatedAtMin =  sinceDate.Subtract(TimeSpan.FromSeconds(1))
-            };
             do
             {
                 if (stoppingToken.IsCancellationRequested)
@@ -43,7 +37,8 @@ namespace ShopInsights.Core.Services.Shopify
                     return Array.Empty<Product>();
                 }
 
-                loadedProducts = (await productService.ListAsync(filter)).ToArray();
+                loadedProducts = await productService.ListUpdatedSinceAsync(sinceDate);
+
                 _logger.LogInformation("Fetched {count} products", loadedProducts.Count);
                 if (products.AddUnique(loadedProducts))
                 {
@@ -52,7 +47,7 @@ namespace ShopInsights.Core.Services.Shopify
 
                     if (maxUpdates.HasValue)
                     {
-                        filter.UpdatedAtMin = maxUpdates.Value.Subtract(TimeSpan.FromSeconds(1));
+                        sinceDate = maxUpdates.Value;
                     }
                     else
                     {

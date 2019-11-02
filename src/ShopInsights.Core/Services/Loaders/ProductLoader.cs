@@ -15,23 +15,4 @@ namespace ShopInsights.Core.Services.Loaders
         {
         }
     }
-
-    public class OrderLoader : Loader<Order>, IOrderLoader
-    {
-        public OrderLoader(IOptions<StoreOptions> optionsAccessor, IOrderImporter importer,
-            IOrderStorage storage, IOrderFilesStorage filesStorage, ILogger<OrderLoader> logger) : base(optionsAccessor, importer, storage,
-            filesStorage, "orders", order => order.UpdatedAt, logger)
-        {
-        }
-    }
-
-    public class CustomerLoader : Loader<Customer>, ICustomerLoader
-    {
-        public CustomerLoader(IOptions<StoreOptions> optionsAccessor, ICustomerImporter importer,
-            ICustomerStorage storage, ICustomerFilesStorage filesStorage, ILogger<CustomerLoader> logger) : base(optionsAccessor, importer, storage,
-            filesStorage, "customers", customer => customer.UpdatedAt, logger)
-        {
-        }
-    }
-
 }

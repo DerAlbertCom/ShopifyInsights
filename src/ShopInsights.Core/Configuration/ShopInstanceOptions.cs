@@ -14,12 +14,11 @@ namespace ShopInsights.Core.Configuration
                 try
                 {
                     TimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(value);
-                } catch (TimeZoneNotFoundException e)
+                }
+                catch (TimeZoneNotFoundException)
                 {
-
                 }
             }
         }
-
     }
 }

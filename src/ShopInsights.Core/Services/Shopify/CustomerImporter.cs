@@ -11,12 +11,12 @@ namespace ShopInsights.Core.Services.Shopify
 {
     class CustomerImporter : ICustomerImporter
     {
-        private readonly IShopifyFactory _shopifyFactory;
+        private readonly IShopifyCustomerService _customerService;
         private readonly ILogger<CustomerImporter> _logger;
 
-        public CustomerImporter(IShopifyFactory shopifyFactory, ILogger<CustomerImporter> logger)
+        public CustomerImporter(IShopifyCustomerService customerService, ILogger<CustomerImporter> logger)
         {
-            _shopifyFactory = shopifyFactory;
+            _customerService = customerService;
             _logger = logger;
         }
 
@@ -25,25 +25,18 @@ namespace ShopInsights.Core.Services.Shopify
         {
             _logger.LogDebug("Importing customers from Shopify since {dateTime}", sinceDate);
 
-            var customerService = _shopifyFactory.CreateCustomerService();
-
             var customers = new Dictionary<long,Customer>();
 
             IReadOnlyCollection<Customer> loadedCustomer;
 
-            var filter = new ListFilter()
-            {
-                Order = "updated_at asc",
-                Limit = 200,
-                UpdatedAtMin =  sinceDate.Subtract(TimeSpan.FromSeconds(1))
-            };
             do
             {
                 if (stoppingToken.IsCancellationRequested)
                 {
                     return Array.Empty<Customer>();
                 }
-                loadedCustomer = (await customerService.ListAsync(filter)).ToArray();
+
+                loadedCustomer = await _customerService.ListUpdatedSinceAsync(sinceDate);
                 _logger.LogInformation("Fetched {count} customers", loadedCustomer.Count);
 
                 if (customers.AddUnique(loadedCustomer))
@@ -52,7 +45,7 @@ namespace ShopInsights.Core.Services.Shopify
                     _logger.LogDebug("Fetching rest of customers from Shopify since {dateTime}", maxUpdates);
                     if (maxUpdates.HasValue)
                     {
-                        filter.UpdatedAtMin = maxUpdates.Value.Subtract(TimeSpan.FromSeconds(1));
+                        sinceDate = maxUpdates.Value;
                     }
                     else
                     {

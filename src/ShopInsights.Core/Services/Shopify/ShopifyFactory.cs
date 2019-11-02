@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using System.Collections;
+using Microsoft.Extensions.Options;
 using ShopifySharp;
 
 namespace ShopInsights.Core.Services.Shopify
@@ -18,22 +19,22 @@ namespace ShopInsights.Core.Services.Shopify
             return new MetaFieldService(options.ShopUrl, options.Password);
         }
 
-        public ProductService CreateProductService()
+        public IShopifyProductService CreateProductService()
         {
             var options = _optionsAccessor.Value;
-            return new ProductService(options.ShopUrl, options.Password);
+            return new ShopifyProductService(new ProductService(options.ShopUrl, options.Password));
         }
 
-        public OrderService CreateOrderService()
+        public IShopifyOrderService CreateOrderService()
         {
             var options = _optionsAccessor.Value;
-            return new OrderService(options.ShopUrl, options.Password);
+            return new ShopifyOrderService(new OrderService(options.ShopUrl, options.Password));
         }
 
-        public CustomerService CreateCustomerService()
+        public IShopifyCustomerService CreateCustomerService()
         {
             var options = _optionsAccessor.Value;
-            return new CustomerService(options.ShopUrl, options.Password);
+            return new ShopifyCustomerService(new CustomerService(options.ShopUrl, options.Password));
         }
     }
 }

@@ -19,42 +19,7 @@ namespace ShopInsights.Core.Services.Shopify
             _shopifyFactory = shopifyFactory;
             _logger = logger;
         }
-        public async Task<IReadOnlyCollection<Order>> GetOrderSinceId(long id)
-        {
-            var orderService = _shopifyFactory.CreateOrderService();
-            var orders = new Dictionary<long,Order>();
 
-            IReadOnlyCollection<Order> loadedOrders;
-
-            var filter = new OrderFilter()
-            {
-                Status = "any",
-                FulfillmentStatus = "any",
-                FinancialStatus = "any",
-                Order = "id asc",
-                SinceId = id
-            };
-            do
-            {
-
-                loadedOrders = (await orderService.ListAsync(filter)).ToArray();
-                orders.AddUnique(loadedOrders);
-
-                var maxId = loadedOrders.Max(o => o.Id);
-                if (maxId.HasValue)
-                {
-
-                    filter.SinceId = id;
-                }
-                else
-                {
-                    break;
-                }
-
-            } while (loadedOrders.Any());
-
-            return orders.Values;
-        }
 
         public async Task<IReadOnlyCollection<Order>> GetSinceAsync(DateTimeOffset sinceDate,
             CancellationToken stoppingToken)
@@ -66,15 +31,6 @@ namespace ShopInsights.Core.Services.Shopify
 
             IReadOnlyCollection<Order> loadedOrders;
 
-            var filter = new OrderFilter()
-            {
-                Status = "any",
-                FulfillmentStatus = "any",
-                FinancialStatus = "any",
-                Order = "updated_at asc",
-                Limit = 200,
-                UpdatedAtMin =  sinceDate.Subtract(TimeSpan.FromSeconds(1))
-            };
             do
             {
                 if (stoppingToken.IsCancellationRequested)
@@ -82,7 +38,7 @@ namespace ShopInsights.Core.Services.Shopify
                     return Array.Empty<Order>();
                 }
 
-                loadedOrders = (await orderService.ListAsync(filter)).ToArray();
+                loadedOrders = await orderService.ListUpdatedSinceAsync(sinceDate);
                 _logger.LogInformation("Fetched {count} orders", loadedOrders.Count);
                 if (orders.AddUnique(loadedOrders))
                 {
@@ -90,7 +46,7 @@ namespace ShopInsights.Core.Services.Shopify
                     _logger.LogDebug("Fetching rest of orders from Shopify since {dateTime}", maxUpdates);
                     if (maxUpdates.HasValue)
                     {
-                        filter.UpdatedAtMin = maxUpdates.Value.Subtract(TimeSpan.FromSeconds(1));
+                        sinceDate = maxUpdates.Value;
                     }
                     else
                     {
