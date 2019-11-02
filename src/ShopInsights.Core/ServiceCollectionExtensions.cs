@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using ShopInsights.Core.Models;
-using ShopInsights.Core.Services;
 using ShopInsights.Core.Services.Loaders;
 using ShopInsights.Core.Services.Shopify;
 

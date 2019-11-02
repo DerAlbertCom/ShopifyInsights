@@ -5,16 +5,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using ShopifySharp;
-using ShopifySharp.Filters;
 
 namespace ShopInsights.Core.Services.Shopify
 {
-    class OrderImporter : IOrderImporter
+    class OrderShopifyFetcher : IOrderShopifyFetcher
     {
         private readonly IShopifyFactory _shopifyFactory;
-        private readonly ILogger<OrderImporter> _logger;
+        private readonly ILogger<OrderShopifyFetcher> _logger;
 
-        public OrderImporter(IShopifyFactory shopifyFactory, ILogger<OrderImporter> logger)
+        public OrderShopifyFetcher(IShopifyFactory shopifyFactory, ILogger<OrderShopifyFetcher> logger)
         {
             _shopifyFactory = shopifyFactory;
             _logger = logger;

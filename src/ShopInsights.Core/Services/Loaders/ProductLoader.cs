@@ -9,8 +9,8 @@ namespace ShopInsights.Core.Services.Loaders
 {
     public class ProductLoader : Loader<Product>, IProductLoader
     {
-        public ProductLoader(IOptions<StoreOptions> optionsAccessor, IProductImporter importer,
-            IProductStorage storage, IProductFilesStorage filesStorage, ILogger<ProductLoader> logger) : base(optionsAccessor, importer, storage,
+        public ProductLoader(IOptions<StoreOptions> optionsAccessor, IProductShopifyFetcher shopifyFetcher,
+            IProductStorage storage, IProductFilesStorage filesStorage, ILogger<ProductLoader> logger) : base(optionsAccessor, shopifyFetcher, storage,
             filesStorage, "products", product => product.UpdatedAt, logger)
         {
         }

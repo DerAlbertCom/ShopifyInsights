@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace ShopInsights.Core.Services.Shopify
 {
@@ -8,9 +7,9 @@ namespace ShopInsights.Core.Services.Shopify
         public static IServiceCollection AddShopifyServices(this IServiceCollection services)
         {
             return services
-                .AddTransient<IOrderImporter, OrderImporter>()
-                .AddTransient<IProductImporter,ProductImporter>()
-                .AddTransient<ICustomerImporter, CustomerImporter>()
+                .AddTransient<IOrderShopifyFetcher, OrderShopifyFetcher>()
+                .AddTransient<IProductShopifyFetcher,ProductShopifyFetcher>()
+                .AddTransient<ICustomerShopifyFetcher, CustomerShopifyFetcher>()
                 .AddTransient<IShopifyFactory, ShopifyFactory>()
                 .AddTransient<IShopifyCustomerService>(provider => provider.GetRequiredService<IShopifyFactory>().CreateCustomerService())
                 .AddTransient<IShopifyOrderService>(provider => provider.GetRequiredService<IShopifyFactory>().CreateOrderService())

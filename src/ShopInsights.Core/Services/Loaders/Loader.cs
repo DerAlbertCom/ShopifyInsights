@@ -15,19 +15,19 @@ namespace ShopInsights.Core.Services.Loaders
     public abstract class Loader<T> : ILoader<T> where T : ShopifyObject
     {
         private readonly IOptions<StoreOptions> _optionsAccessor;
-        private readonly IImporter<T> _importer;
+        private readonly IShopifyFetcher<T> _shopifyFetcher;
         private readonly IShopifyStorage<T> _storage;
         private readonly IFilesStorage<T> _filesStorage;
         private readonly string _folder;
         private readonly Func<T, DateTimeOffset?> _updateSelector;
         private readonly ILogger _logger;
 
-        protected Loader(IOptions<StoreOptions> optionsAccessor, IImporter<T> importer,
+        protected Loader(IOptions<StoreOptions> optionsAccessor, IShopifyFetcher<T> shopifyFetcher,
             IShopifyStorage<T> storage, IFilesStorage<T> filesStorage, string folder,
             Func<T, DateTimeOffset?> updateSelector, ILogger logger)
         {
             _optionsAccessor = optionsAccessor;
-            _importer = importer;
+            _shopifyFetcher = shopifyFetcher;
             _storage = storage;
             _filesStorage = filesStorage;
             _folder = folder;
@@ -45,7 +45,7 @@ namespace ShopInsights.Core.Services.Loaders
             }
 
             _logger.LogInformation("Loading new {type}s", typeof(T).Name);
-            var products = await _importer.GetSinceAsync(maxUpdate.Value, stoppingToken);
+            var products = await _shopifyFetcher.GetSinceAsync(maxUpdate.Value, stoppingToken);
 
             if (stoppingToken.IsCancellationRequested)
             {

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using ShopifySharp;
 
 namespace ShopInsights.Core.Services.Shopify

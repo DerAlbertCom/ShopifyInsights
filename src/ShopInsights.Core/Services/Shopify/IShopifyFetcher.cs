@@ -6,7 +6,7 @@ using ShopifySharp;
 
 namespace ShopInsights.Core.Services.Shopify
 {
-    public interface IImporter<T> where T : ShopifyObject
+    public interface IShopifyFetcher<T> where T : ShopifyObject
     {
         Task<IReadOnlyCollection<T>> GetSinceAsync(DateTimeOffset sinceDate, CancellationToken stoppingToken);
     }

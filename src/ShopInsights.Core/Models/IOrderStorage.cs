@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ShopifySharp;
+﻿using ShopifySharp;
 
 namespace ShopInsights.Core.Models
 {
