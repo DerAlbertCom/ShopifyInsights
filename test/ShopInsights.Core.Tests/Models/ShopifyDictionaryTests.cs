@@ -8,14 +8,16 @@ using Xunit;
 
 namespace ShopInsights.Core.Tests.Models
 {
-    public class OrderDictionaryTests : WithSubject<OrderDictionary>
+    public class ShopifyDictionaryTests
     {
+        ShopifyDictionary<long,Order> Subject = new ShopifyDictionary<long, Order>(o=> o.Id);
+
         [Fact]
         public void Should_add_an_order()
         {
             var order = new Order
             {
-                OrderNumber = 1,
+                Id = 1,
                 CreatedAt = DateTimeOffset.Now
             };
 
@@ -27,7 +29,7 @@ namespace ShopInsights.Core.Tests.Models
         }
 
         [Fact]
-        public void Should_throw_on_adding_with_missing_orderNumber()
+        public void Should_throw_on_adding_with_missing_key()
         {
             var order = new Order
             {
@@ -42,25 +44,8 @@ namespace ShopInsights.Core.Tests.Models
 
         }
 
-
-
         [Fact]
-        public void Should_throw_on_adding_with_missing_createdAt()
-        {
-            var order = new Order
-            {
-                OrderNumber = 101,
-            };
-
-            Action action = () => Subject.Add(order);
-
-            action.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("*missing*101*");
-
-            Subject.Values.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void Should_throw_on_update_with_missing_orderNumber()
+        public void Should_throw_on_update_with_missing_key()
         {
             var order = new Order
             {
@@ -76,11 +61,11 @@ namespace ShopInsights.Core.Tests.Models
         }
 
         [Fact]
-        public void Should_throw_on_update_with_non_existing_order_number()
+        public void Should_throw_on_update_with_non_existing_key()
         {
             var order = new Order
             {
-                OrderNumber = 102,
+                Id = 102,
                 CreatedAt = DateTimeOffset.Now
             };
 

@@ -4,6 +4,7 @@
     <DefaultItemExcludes>*.ncrunchproject;*.DotSettings</DefaultItemExcludes>
     <UpdateAssemblyInfo>false</UpdateAssemblyInfo>
     <DisableGitVersionTask>true</DisableGitVersionTask>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(NCrunch)' == '1'">

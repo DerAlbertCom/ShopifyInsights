@@ -4,14 +4,21 @@
 @{
     ViewData["Title"] = "Berichte";
 }
-
+<form asp-page="./Index" method="get">
+    <label>Von</label> <input type="date" name="from" asp-for="From"/>
+    <label>Bis</label> <input type="date" name="to" asp-for="To"/>
+    <button type="button">Anzeigen</button>
+</form>
 <canvas id="chart" width="400" height="200"></canvas>
 
 @section scripts
 {
-<script>
+    <script>
     let myChart = null;
     function setChar(data) {
+        if (myChart) {
+            myChart.destroy();
+        }
         myChart = new Chart('chart', {
         type: 'line',
         data: {
@@ -40,12 +47,24 @@
         }
     })}
 
-    fetch('/api/reports/sales?from=2019-01-01')
-    .then(response => {
-       response.json().then(result=>{
-            setChar(result);
-       })
+    function refresh() {
+        const from = $('[name=from]').val();
+        const to = $('[name=to]').val();
+        const url = `/api/reports/sales?from=${from}&${to}`;
+        fetch(url)
+        .then(response => {
+           response.json().then(result=>{
+                setChar(result);
+           })
+        });
+    }
+    $(()=>{
+        refresh();
     });
+        $('button').on('click', ()=>{
+           refresh();
+        });
+
 
 </script>
 

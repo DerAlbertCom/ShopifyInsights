@@ -30,7 +30,7 @@ namespace ShopInsights.Web.Controllers
             var current = from.Value;
             while (current <= to.Value)
             {
-                var orders = _storage.GetOrdersForDate(current);
+                var orders = _storage.GetForDate(current);
                 var sum = orders.Sum(o => o.TotalPrice.Value);
                 list.Add((current, sum));
                 current = current.AddDays(1);

@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using ShopifySharp;
 using ShopifySharp.Filters;
+using ShopInsights.Core.Services;
+using ShopInsights.Core.Services.Shopify;
 
 namespace ShopInsights.Infrastructure.Services
 {

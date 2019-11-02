@@ -4,7 +4,7 @@ using ShopifySharp;
 
 namespace ShopInsights.Core.Stores
 {
-    public interface IOderStore
+    public interface IOrderStore
     {
         Task Store(IReadOnlyDictionary<int,Order> orders);
     }

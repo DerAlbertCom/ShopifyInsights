@@ -1,4 +1,4 @@
-﻿﻿namespace ShopInsights.Infrastructure.Services
+﻿﻿namespace ShopInsights.Core.Services.Shopify
 {
     public class ShopifyAuthenticationOptions
     {

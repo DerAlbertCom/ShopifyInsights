@@ -1,0 +1,4 @@
+﻿namespace ShopInsights.Core.Stores
+{
+
+}

@@ -22,7 +22,7 @@ namespace ShopInsights.Web.Pages
 
         public async Task OnPostImport(CancellationToken cancellationToken)
         {
-            await _importer.ImportExistingOrdersAsync(cancellationToken);
+     //       await _importer.ImportExistingOrdersAsync(cancellationToken);
         }
 
         public Task OnPostUpdate()
@@ -31,7 +31,7 @@ namespace ShopInsights.Web.Pages
         }
 
 
-        public bool ShowImport => !_orderStorage.AllOrders.Any();
+        public bool ShowImport => !_orderStorage.All.Any();
 
         private readonly IOrderStorage _orderStorage;
         private readonly IOrderFilesImporter _importer;

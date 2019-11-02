@@ -9,7 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using ShopifySharp;
 using ShopInsights.Core;
+using ShopInsights.Core.Services.Shopify;
 using ShopInsights.Core.Stores;
 using ShopInsights.Infrastructure;
 using ShopInsights.Web.Stores;
@@ -38,21 +40,34 @@ namespace ShopInsights.Web
             services.AddCoreServices();
 
             ConfigureOptions(services);
+            ConfiguraAppServices(services);
             ConfigureBackgroundServices(services);
+
+            ShopifyService.SetGlobalExecutionPolicy(new SmartRetryExecutionPolicy());
         }
 
+        private void ConfiguraAppServices(IServiceCollection services)
+        {
+            services.AddTransient<IImportAndSaveNewData, ImportAndSaveNewData>();
+            services.AddTransient<IExistingDataImporter, ExistingDataImporter>();
+        }
         private void ConfigureBackgroundServices(IServiceCollection services)
         {
-            if (_hostEnvironment.IsDevelopment())
-            {
-                services.AddHostedService<DevelopmentFileImporter>();
-            }
+            services.AddHostedService<DataInitialization>();
         }
 
         private void ConfigureOptions(IServiceCollection services)
         {
             services.AddTransient<IValidateOptions<OrderStoreOptions>, OrderStoreOptionsValidator>();
-            services.Configure<OrderStoreOptions>(Configuration.GetSection("Shop:OrderStore"));
+
+            services.AddOptions<OrderStoreOptions>()
+                .Bind(Configuration.GetSection("Shop:OrderStore"));
+
+            services.AddOptions<StoreOptions>()
+                .Bind(Configuration.GetSection("Shop:Store"));
+
+            services.AddOptions<ShopifyAuthenticationOptions>()
+                .Bind(Configuration.GetSection("Shopify"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

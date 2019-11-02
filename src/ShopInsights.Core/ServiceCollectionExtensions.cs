@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using ShopInsights.Core.Models;
 using ShopInsights.Core.Services;
+using ShopInsights.Core.Services.Loaders;
+using ShopInsights.Core.Services.Shopify;
 
 namespace ShopInsights.Core
 {
@@ -9,9 +11,14 @@ namespace ShopInsights.Core
     {
         public static IServiceCollection AddCoreServices(this IServiceCollection services)
         {
-            services.TryAddTransient<IOrdersSelector,OrdersSelector>();
-            services.TryAddTransient<IOrderUpdater, OrderUpdater>();
             services.TryAddSingleton<IOrderStorage, OrderStorage>();
+            services.TryAddSingleton<IProductStorage, ProductStorage>();
+            services.TryAddSingleton<ICustomerStorage, CustomerStorage>();
+
+            services.AddTransient<IProductLoader, ProductLoader>();
+            services.AddTransient<ICustomerLoader, CustomerLoader>();
+            services.AddTransient<IOrderLoader, OrderLoader>();
+            services.AddShopifyServices();
             return services;
         }
     }
