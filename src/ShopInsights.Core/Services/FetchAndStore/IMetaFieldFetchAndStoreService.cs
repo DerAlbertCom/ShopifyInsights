@@ -6,4 +6,8 @@ namespace ShopInsights.Core.Services.FetchAndStore
     {
 
     }
+    public interface ILocationFetchAndStoreService : IFetchAndStoreService<Location>
+    {
+
+    }
 }

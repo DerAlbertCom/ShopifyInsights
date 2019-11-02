@@ -8,5 +8,6 @@
         IShopifyProductService CreateProductService();
         IShopifyOrderService CreateOrderService();
         IShopifyCustomerService CreateCustomerService();
+        IShopifyLocationService CreateLocationService();
     }
 }

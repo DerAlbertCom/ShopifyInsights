@@ -6,4 +6,8 @@ namespace ShopInsights.Core.Services.Shopify
     {
 
     }
+    public interface ILocationShopifyFetcher : IShopifyFetcher<Location>
+    {
+
+    }
 }

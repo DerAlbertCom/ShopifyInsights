@@ -28,4 +28,19 @@ namespace ShopInsights.Core.Services.Shopify
             return metaFields.ToArray();
         }
     }
+    internal class ShopifyLocationService : IShopifyLocationService
+    {
+        private readonly LocationService _locationService;
+
+        public ShopifyLocationService(LocationService locationService)
+        {
+            _locationService = locationService;
+        }
+
+        public async Task<IReadOnlyCollection<Location>> ListUpdatedSinceAsync()
+        {
+            var locations = await _locationService.ListAsync();
+            return locations.ToArray();
+        }
+    }
 }

@@ -11,4 +11,10 @@ namespace ShopInsights.Infrastructure.Stores
         {
         }
     }
+    public class LocationFileWriter : FilesWriter<Location>, ILocationFilesWriter
+    {
+        public LocationFileWriter(ILocationStorage storage, ILogger<LocationFileWriter> logger) : base(storage, "locations", logger)
+        {
+        }
+    }
 }

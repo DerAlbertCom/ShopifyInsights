@@ -12,4 +12,11 @@ namespace ShopInsights.Infrastructure.Stores
 
         }
     }
+    public class LocationFilesReader : FilesReader<Location>, ILocationFilesReader
+    {
+        public LocationFilesReader(ILocationStorage storage, ILogger<LocationFilesReader> logger):base(storage,"locations", logger)
+        {
+
+        }
+    }
 }

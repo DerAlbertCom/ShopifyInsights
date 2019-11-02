@@ -11,6 +11,7 @@ namespace ShopInsights.Web.Stores
         private readonly ICustomerFetchAndStoreService _customerFetchAndStoreService;
         private readonly IOrderFetchAndStoreService _orderFetchAndStoreService;
         private readonly IMetaFieldFetchAndStoreService _metaFieldFetchAndStoreService;
+        private readonly ILocationFetchAndStoreService _locationFetchAndStoreService;
         private readonly ILogger<FetchAndStoreUpdatedDataService> _logger;
 
         public FetchAndStoreUpdatedDataService(
@@ -18,12 +19,14 @@ namespace ShopInsights.Web.Stores
             ICustomerFetchAndStoreService customerFetchAndStoreService,
             IOrderFetchAndStoreService orderFetchAndStoreService,
             IMetaFieldFetchAndStoreService metaFieldFetchAndStoreService,
+            ILocationFetchAndStoreService locationFetchAndStoreService,
             ILogger<FetchAndStoreUpdatedDataService> logger)
         {
             _productFetchAndStoreService = productFetchAndStoreService;
             _customerFetchAndStoreService = customerFetchAndStoreService;
             _orderFetchAndStoreService = orderFetchAndStoreService;
             _metaFieldFetchAndStoreService = metaFieldFetchAndStoreService;
+            _locationFetchAndStoreService = locationFetchAndStoreService;
             _logger = logger;
         }
 
@@ -37,6 +40,8 @@ namespace ShopInsights.Web.Stores
             await _customerFetchAndStoreService.FetchUpdatesAndStoreAsync(stoppingToken);
             _logger.LogDebug("Load new Orders");
             await _orderFetchAndStoreService.FetchUpdatesAndStoreAsync(stoppingToken);
+            _logger.LogDebug("Load new Locations");
+            await _locationFetchAndStoreService.FetchUpdatesAndStoreAsync(stoppingToken);
         }
     }
 }

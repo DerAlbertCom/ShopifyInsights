@@ -10,4 +10,10 @@ namespace ShopInsights.Core.Models
         {
         }
     }
+    public class LocationStorage : ShopifyStorage<Location>, ILocationStorage
+    {
+        public LocationStorage(IOptions<ShopInstanceOptions> optionsAccessor) : base(optionsAccessor, c =>c .CreatedAt, c=> c.UpdatedAt)
+        {
+        }
+    }
 }

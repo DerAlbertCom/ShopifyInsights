@@ -7,6 +7,7 @@
 <form asp-page="./Index" method="get">
     <label>Von</label> <input type="date" name="from" asp-for="From"/>
     <label>Bis</label> <input type="date" name="to" asp-for="To"/>
+    <label>Ort</label> <select asp-items="Model.LocationItems" name="location"></select>
     <button type="button">Anzeigen</button>
 </form>
 <canvas id="chart" width="400" height="200"></canvas>
@@ -50,7 +51,8 @@
     function refresh() {
         const from = $('[name=from]').val();
         const to = $('[name=to]').val();
-        const url = `/api/reports/sales?from=${from}&${to}`;
+        const location = $('[name=location]').val();
+        const url = `/api/reports/sales?from=${from}&to=${to}&location=${location}`;
         fetch(url)
         .then(response => {
            response.json().then(result=>{

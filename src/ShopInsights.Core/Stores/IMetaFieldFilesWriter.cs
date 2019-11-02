@@ -6,4 +6,8 @@ namespace ShopInsights.Core.Stores
     {
 
     }
+    public interface ILocationFilesWriter : IFilesWriter<Location>
+    {
+
+    }
 }

@@ -35,5 +35,11 @@ namespace ShopInsights.Core.Services.Shopify
             var options = _optionsAccessor.Value;
             return new ShopifyCustomerService(new CustomerService(options.ShopUrl, options.Password));
         }
+
+        public IShopifyLocationService CreateLocationService()
+        {
+            var options = _optionsAccessor.Value;
+            return new ShopifyLocationService(new LocationService(options.ShopUrl, options.Password));
+        }
     }
 }

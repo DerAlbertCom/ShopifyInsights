@@ -6,4 +6,8 @@ namespace ShopInsights.Core.Models
     {
 
     }
+    public interface ILocationStorage : IShopifyStorage<Location>
+    {
+
+    }
 }

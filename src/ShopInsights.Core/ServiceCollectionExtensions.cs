@@ -14,11 +14,13 @@ namespace ShopInsights.Core
             services.TryAddSingleton<IProductStorage, ProductStorage>();
             services.TryAddSingleton<ICustomerStorage, CustomerStorage>();
             services.TryAddSingleton<IMetaFieldStorage, MetaFieldStorage>();
+            services.TryAddSingleton<ILocationStorage, LocationStorage>();
 
             services.AddTransient<IProductFetchAndStoreService, ProductFetchAndStoreService>();
             services.AddTransient<ICustomerFetchAndStoreService, CustomerFetchAndStoreService>();
             services.AddTransient<IOrderFetchAndStoreService, OrderFetchAndStoreService>();
             services.AddTransient<IMetaFieldFetchAndStoreService, MetaFieldFetchAndStoreService>();
+            services.AddTransient<ILocationFetchAndStoreService, LocationFetchAndStoreService>();
             services.AddShopifyServices();
             return services;
         }

@@ -11,7 +11,15 @@ namespace ShopInsights.Core.Services.FetchAndStore
     {
         public MetaFieldFetchAndStoreService(IOptions<StoreOptions> optionsAccessor, IMetaFieldShopifyFetcher shopifyFetcher,
             IMetaFieldStorage storage, IMetaFieldFilesWriter filesWriter, ILogger<MetaFieldFetchAndStoreService> logger) : base(optionsAccessor, shopifyFetcher, storage,
-            filesWriter, "MetaFields", MetaField => MetaField.UpdatedAt, logger)
+            filesWriter, "metafields", MetaField => MetaField.UpdatedAt, logger)
+        {
+        }
+    }
+    public class LocationFetchAndStoreService : FetchAndStoreService<Location>, ILocationFetchAndStoreService
+    {
+        public LocationFetchAndStoreService(IOptions<StoreOptions> optionsAccessor, ILocationShopifyFetcher shopifyFetcher,
+            ILocationStorage storage, ILocationFilesWriter filesWriter, ILogger<LocationFetchAndStoreService> logger) : base(optionsAccessor, shopifyFetcher, storage,
+            filesWriter, "locations", Location => Location.UpdatedAt, logger)
         {
         }
     }

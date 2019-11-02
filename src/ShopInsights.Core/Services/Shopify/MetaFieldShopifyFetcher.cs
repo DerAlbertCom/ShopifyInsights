@@ -64,4 +64,46 @@ namespace ShopInsights.Core.Services.Shopify
 
         }
     }
+    class LocationShopifyFetcher : ILocationShopifyFetcher
+    {
+        private readonly IShopifyLocationService _locationService;
+        private readonly ILogger<LocationShopifyFetcher> _logger;
+
+        public LocationShopifyFetcher(IShopifyLocationService locationService, ILogger<LocationShopifyFetcher> logger)
+        {
+            _locationService = locationService;
+            _logger = logger;
+        }
+
+        public async Task<IReadOnlyCollection<Location>> GetUpdatedSinceAsync(DateTimeOffset sinceDate,
+            CancellationToken stoppingToken)
+        {
+            _logger.LogDebug("Importing Locations from Shopify since {dateTime}", sinceDate);
+
+            var locations = new Dictionary<long,Location>();
+
+            IReadOnlyCollection<Location> loadedLocation;
+
+            do
+            {
+                if (stoppingToken.IsCancellationRequested)
+                {
+                    return Array.Empty<Location>();
+                }
+
+                loadedLocation = await _locationService.ListUpdatedSinceAsync();
+                _logger.LogInformation("Fetched {count} Locations", loadedLocation.Count);
+
+                if (!locations.AddUnique(loadedLocation))
+                {
+                    break;
+                }
+
+
+            } while (loadedLocation.Any());
+
+            return locations.Values;
+
+        }
+    }
 }

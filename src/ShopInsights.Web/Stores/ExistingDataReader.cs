@@ -14,6 +14,7 @@ namespace ShopInsights.Web.Stores
             IProductFilesReader productReader,
             ICustomerFilesReader customerReader,
             IMetaFieldFilesReader metaFieldReader,
+            ILocationFilesReader locationReader,
             IOptions<StoreOptions> optionsAccessor,
             ILogger<ExistingDataReader> logger)
         {
@@ -21,6 +22,7 @@ namespace ShopInsights.Web.Stores
             _productReader = productReader;
             _customerReader = customerReader;
             _metaFieldReader = metaFieldReader;
+            _locationReader = locationReader;
             _logger = logger;
             _optionsAccessor = optionsAccessor;
         }
@@ -47,6 +49,11 @@ namespace ShopInsights.Web.Stores
             EnsurePath(metaFieldPath);
             _logger.LogDebug("Import from {path}", metaFieldPath);
             await _metaFieldReader.ImportExistingAsync(metaFieldPath, stoppingToken);
+
+            var locationPath = Path.Combine(filePath, "locations");
+            EnsurePath(locationPath);
+            _logger.LogDebug("Import from {path}", locationPath);
+            await _locationReader.ImportExistingAsync(locationPath, stoppingToken);
         }
 
         private void EnsurePath(string path)
@@ -61,6 +68,7 @@ namespace ShopInsights.Web.Stores
         private readonly IProductFilesReader _productReader;
         private readonly ICustomerFilesReader _customerReader;
         private readonly IMetaFieldFilesReader _metaFieldReader;
+        private readonly ILocationFilesReader _locationReader;
         private readonly ILogger<ExistingDataReader> _logger;
         private readonly IOptions<StoreOptions> _optionsAccessor;
     }
