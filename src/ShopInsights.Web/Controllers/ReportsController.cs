@@ -48,10 +48,4 @@ namespace ShopInsights.Web.Controllers
 
         private readonly IOrderStorage _storage;
     }
-
-    public class SalesModel
-    {
-        public decimal[] Data { get; set; }
-        public string[] Labels { get; set; }
-    }
 }

@@ -2,7 +2,7 @@
 
 namespace ShopInsights.Core.Models
 {
-    public interface ICustomerStorage : IShopifyStorage<Customer>
+    public interface IMetaFieldStorage : IShopifyStorage<MetaField>
     {
 
     }

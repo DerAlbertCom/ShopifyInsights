@@ -4,7 +4,7 @@
 {
     public interface IShopifyFactory
     {
-        MetaFieldService CreateMetaFieldService();
+        IShopifyMetaFieldService CreateMetaFieldService();
         IShopifyProductService CreateProductService();
         IShopifyOrderService CreateOrderService();
         IShopifyCustomerService CreateCustomerService();

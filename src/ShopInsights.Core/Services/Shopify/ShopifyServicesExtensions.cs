@@ -10,10 +10,12 @@ namespace ShopInsights.Core.Services.Shopify
                 .AddTransient<IOrderShopifyFetcher, OrderShopifyFetcher>()
                 .AddTransient<IProductShopifyFetcher,ProductShopifyFetcher>()
                 .AddTransient<ICustomerShopifyFetcher, CustomerShopifyFetcher>()
+                .AddTransient<IMetaFieldShopifyFetcher, MetaFieldShopifyFetcher>()
                 .AddTransient<IShopifyFactory, ShopifyFactory>()
                 .AddTransient<IShopifyCustomerService>(provider => provider.GetRequiredService<IShopifyFactory>().CreateCustomerService())
                 .AddTransient<IShopifyOrderService>(provider => provider.GetRequiredService<IShopifyFactory>().CreateOrderService())
-                .AddTransient<IShopifyProductService>(provider => provider.GetRequiredService<IShopifyFactory>().CreateProductService());
+                .AddTransient<IShopifyProductService>(provider => provider.GetRequiredService<IShopifyFactory>().CreateProductService())
+                .AddTransient<IShopifyMetaFieldService>(provider => provider.GetRequiredService<IShopifyFactory>().CreateMetaFieldService());
         }
     }
 }

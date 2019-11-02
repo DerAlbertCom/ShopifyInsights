@@ -12,10 +12,12 @@ namespace ShopInsights.Infrastructure
             services.TryAddTransient<IOrderFilesReader,OrderFilesReader>();
             services.TryAddTransient<IProductFilesReader,ProductFilesReader>();
             services.TryAddTransient<ICustomerFilesReader,CustomerFilesReader>();
+            services.TryAddTransient<IMetaFieldFilesReader,MetaFieldFilesReader>();
 
             services.AddTransient<IOrderFilesWriter, OrderFileWriter>();
             services.AddTransient<IProductFilesWriter, ProductFileWriter>();
             services.AddTransient<ICustomerFilesWriter, CustomerFileWriter>();
+            services.AddTransient<IMetaFieldFilesWriter, MetaFieldFileWriter>();
 
             return services;
         }

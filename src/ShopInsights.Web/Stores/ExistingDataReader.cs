@@ -9,12 +9,18 @@ namespace ShopInsights.Web.Stores
 {
     public class ExistingDataReader : IExistingDataReader
     {
-        public ExistingDataReader(IOrderFilesReader orderReader, IProductFilesReader productReader,
-            ICustomerFilesReader customerReader, IOptions<StoreOptions> optionsAccessor, ILogger<ExistingDataReader> logger)
+        public ExistingDataReader(
+            IOrderFilesReader orderReader,
+            IProductFilesReader productReader,
+            ICustomerFilesReader customerReader,
+            IMetaFieldFilesReader metaFieldReader,
+            IOptions<StoreOptions> optionsAccessor,
+            ILogger<ExistingDataReader> logger)
         {
             _orderReader = orderReader;
             _productReader = productReader;
             _customerReader = customerReader;
+            _metaFieldReader = metaFieldReader;
             _logger = logger;
             _optionsAccessor = optionsAccessor;
         }
@@ -36,6 +42,11 @@ namespace ShopInsights.Web.Stores
             EnsurePath(customerPath);
             _logger.LogDebug("Import from {path}", customerPath);
             await _customerReader.ImportExistingAsync(customerPath, stoppingToken);
+
+            var metaFieldPath = Path.Combine(filePath, "metafields");
+            EnsurePath(metaFieldPath);
+            _logger.LogDebug("Import from {path}", metaFieldPath);
+            await _metaFieldReader.ImportExistingAsync(metaFieldPath, stoppingToken);
         }
 
         private void EnsurePath(string path)
@@ -49,6 +60,7 @@ namespace ShopInsights.Web.Stores
         private readonly IOrderFilesReader _orderReader;
         private readonly IProductFilesReader _productReader;
         private readonly ICustomerFilesReader _customerReader;
+        private readonly IMetaFieldFilesReader _metaFieldReader;
         private readonly ILogger<ExistingDataReader> _logger;
         private readonly IOptions<StoreOptions> _optionsAccessor;
     }

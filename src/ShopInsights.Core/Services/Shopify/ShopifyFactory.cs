@@ -12,10 +12,10 @@ namespace ShopInsights.Core.Services.Shopify
             _optionsAccessor = optionsAccessor;
         }
 
-        public MetaFieldService CreateMetaFieldService()
+        public IShopifyMetaFieldService CreateMetaFieldService()
         {
             var options = _optionsAccessor.Value;
-            return new MetaFieldService(options.ShopUrl, options.Password);
+            return new ShopifyMetaFieldService(new MetaFieldService(options.ShopUrl, options.Password));
         }
 
         public IShopifyProductService CreateProductService()

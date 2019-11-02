@@ -2,7 +2,7 @@
 
 namespace ShopInsights.Core.Services.FetchAndStore
 {
-    public interface ICustomerFetchAndStoreService : IFetchAndStoreService<Customer>
+    public interface IMetaFieldFetchAndStoreService : IFetchAndStoreService<MetaField>
     {
 
     }
