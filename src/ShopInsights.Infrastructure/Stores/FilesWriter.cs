@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ShopifySharp;
@@ -10,13 +9,13 @@ using ShopInsights.Core.Stores;
 
 namespace ShopInsights.Infrastructure.Stores
 {
-    public abstract class FilesStorage<T> : IFilesStorage<T> where T : ShopifyObject
+    public abstract class FilesWriter<T> : IFilesWriter<T> where T : ShopifyObject
     {
         private readonly IShopifyStorage<T> _storage;
         private readonly string _startFile;
         private readonly ILogger _logger;
 
-        protected FilesStorage(IShopifyStorage<T> storage, string startFile, ILogger logger)
+        protected FilesWriter(IShopifyStorage<T> storage, string startFile, ILogger logger)
         {
             _storage = storage;
             _startFile = startFile;

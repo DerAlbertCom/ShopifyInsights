@@ -20,7 +20,7 @@ namespace ShopInsights.Core.Services.Shopify
         }
 
 
-        public async Task<IReadOnlyCollection<Order>> GetSinceAsync(DateTimeOffset sinceDate,
+        public async Task<IReadOnlyCollection<Order>> GetUpdatedSinceAsync(DateTimeOffset sinceDate,
             CancellationToken stoppingToken)
         {
             _logger.LogDebug("Importing Orders from Shopify since {dateTime}", sinceDate);

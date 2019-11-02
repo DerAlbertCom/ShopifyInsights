@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -13,9 +12,9 @@ using ShopInsights.Core.Stores;
 
 namespace ShopInsights.Infrastructure.Stores
 {
-    public abstract class FilesImporter<T> : IFilesImporter<T> where T : ShopifyObject
+    public abstract class FilesReader<T> : IFilesReader<T> where T : ShopifyObject
     {
-        protected FilesImporter(IShopifyStorage<T> storage,
+        protected FilesReader(IShopifyStorage<T> storage,
             string startFile,
             ILogger logger)
         {

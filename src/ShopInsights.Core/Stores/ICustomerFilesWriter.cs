@@ -2,7 +2,7 @@
 
 namespace ShopInsights.Core.Stores
 {
-    public interface IProductFilesImporter : IFilesImporter<Product>
+    public interface ICustomerFilesWriter : IFilesWriter<Customer>
     {
 
     }

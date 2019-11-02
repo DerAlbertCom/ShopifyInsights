@@ -5,9 +5,9 @@ using ShopInsights.Core.Stores;
 
 namespace ShopInsights.Infrastructure.Stores
 {
-    public class OrderFileStorage : FilesStorage<Order>, IOrderFilesStorage
+    public class OrderFileWriter : FilesWriter<Order>, IOrderFilesWriter
     {
-        public OrderFileStorage(IOrderStorage storage, ILogger<OrderFileStorage> logger) : base(storage, "orders", logger)
+        public OrderFileWriter(IOrderStorage storage, ILogger<OrderFileWriter> logger) : base(storage, "orders", logger)
         {
         }
     }

@@ -19,7 +19,7 @@ namespace ShopInsights.Core.Services.Shopify
             _logger = logger;
         }
 
-        public async Task<IReadOnlyCollection<Product>> GetSinceAsync(DateTimeOffset sinceDate,
+        public async Task<IReadOnlyCollection<Product>> GetUpdatedSinceAsync(DateTimeOffset sinceDate,
             CancellationToken stoppingToken)
         {
             _logger.LogInformation("Importing Product from Shopify since {dateTime}", sinceDate);

@@ -1,4 +1,0 @@
-﻿namespace ShopInsights.Core.Stores
-{
-
-}

@@ -11,7 +11,7 @@ using Xunit;
 
 namespace ShopInsights.Infrastructure.Tests.Stores
 {
-    public class FileOrderStoreTests : WithSubject<OrderFilesImporter>
+    public class FileOrderStoreTests : WithSubject<OrderFilesReader>
     {
         public FileOrderStoreTests()
         {

@@ -8,6 +8,6 @@ namespace ShopInsights.Core.Services.Shopify
 {
     public interface IShopifyFetcher<T> where T : ShopifyObject
     {
-        Task<IReadOnlyCollection<T>> GetSinceAsync(DateTimeOffset sinceDate, CancellationToken stoppingToken);
+        Task<IReadOnlyCollection<T>> GetUpdatedSinceAsync(DateTimeOffset sinceDate, CancellationToken stoppingToken);
     }
 }

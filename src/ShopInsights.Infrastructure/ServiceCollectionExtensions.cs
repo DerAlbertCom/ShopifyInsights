@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using ShopInsights.Core.Services;
-using ShopInsights.Core.Services.Shopify;
 using ShopInsights.Core.Stores;
-using ShopInsights.Infrastructure.Services;
 using ShopInsights.Infrastructure.Stores;
 
 namespace ShopInsights.Infrastructure
@@ -12,13 +9,13 @@ namespace ShopInsights.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
-            services.TryAddTransient<IOrderFilesImporter,OrderFilesImporter>();
-            services.TryAddTransient<IProductFilesImporter,ProductFilesImporter>();
-            services.TryAddTransient<ICustomerFilesImporter,CustomerFilesImporter>();
+            services.TryAddTransient<IOrderFilesReader,OrderFilesReader>();
+            services.TryAddTransient<IProductFilesReader,ProductFilesReader>();
+            services.TryAddTransient<ICustomerFilesReader,CustomerFilesReader>();
 
-            services.AddTransient<IOrderFilesStorage, OrderFileStorage>();
-            services.AddTransient<IProductFilesStorage, ProductFileStorage>();
-            services.AddTransient<ICustomerFilesStorage, CustomerFileStorage>();
+            services.AddTransient<IOrderFilesWriter, OrderFileWriter>();
+            services.AddTransient<IProductFilesWriter, ProductFileWriter>();
+            services.AddTransient<ICustomerFilesWriter, CustomerFileWriter>();
 
             return services;
         }

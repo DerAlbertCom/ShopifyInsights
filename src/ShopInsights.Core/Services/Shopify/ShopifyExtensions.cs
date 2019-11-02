@@ -3,7 +3,7 @@ using ShopifySharp;
 
 namespace ShopInsights.Core.Services.Shopify
 {
-    public static class ShopifyExtensions
+    internal static class ShopifyExtensions
     {
         public static bool AddUnique<T>(this IDictionary<long, T> objects, IReadOnlyCollection<T> freshObjects) where T : ShopifyObject
         {
@@ -12,11 +12,10 @@ namespace ShopInsights.Core.Services.Shopify
             {
                 if (!shopifyObject.Id.HasValue) continue;
 
-                if (!objects.ContainsKey(shopifyObject.Id.Value))
-                {
-                    objects[shopifyObject.Id.Value] = shopifyObject;
-                    added = true;
-                }
+                if (objects.ContainsKey(shopifyObject.Id.Value)) continue;
+
+                objects[shopifyObject.Id.Value] = shopifyObject;
+                added = true;
             }
 
             return added;

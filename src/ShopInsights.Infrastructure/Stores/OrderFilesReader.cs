@@ -5,9 +5,9 @@ using ShopInsights.Core.Stores;
 
 namespace ShopInsights.Infrastructure.Stores
 {
-    public class OrderFilesImporter : FilesImporter<Order>, IOrderFilesImporter
+    public class OrderFilesReader : FilesReader<Order>, IOrderFilesReader
     {
-        public OrderFilesImporter(IOrderStorage storage, ILogger<OrderFilesImporter> logger):base(storage,"orders", logger)
+        public OrderFilesReader(IOrderStorage storage, ILogger<OrderFilesReader> logger):base(storage,"orders", logger)
         {
 
         }

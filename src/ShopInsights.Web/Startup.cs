@@ -40,16 +40,16 @@ namespace ShopInsights.Web
             services.AddCoreServices();
 
             ConfigureOptions(services);
-            ConfiguraAppServices(services);
+            ConfigureAppServices(services);
             ConfigureBackgroundServices(services);
 
             ShopifyService.SetGlobalExecutionPolicy(new SmartRetryExecutionPolicy());
         }
 
-        private void ConfiguraAppServices(IServiceCollection services)
+        private void ConfigureAppServices(IServiceCollection services)
         {
-            services.AddTransient<IImportAndSaveNewData, ImportAndSaveNewData>();
-            services.AddTransient<IExistingDataImporter, ExistingDataImporter>();
+            services.AddTransient<IFetchAndStoreUpdatedDataService, FetchAndStoreUpdatedDataService>();
+            services.AddTransient<IExistingDataReader, ExistingDataReader>();
         }
         private void ConfigureBackgroundServices(IServiceCollection services)
         {

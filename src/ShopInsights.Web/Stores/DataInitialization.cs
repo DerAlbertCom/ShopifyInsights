@@ -8,14 +8,14 @@ namespace ShopInsights.Web.Stores
 {
     public class DataInitialization : BackgroundService
     {
-        private readonly IExistingDataImporter _importer;
-        private readonly IImportAndSaveNewData _saveNewData;
+        private readonly IExistingDataReader _reader;
+        private readonly IFetchAndStoreUpdatedDataService _storeUpdatedDataService;
         private readonly ILogger<DataInitialization> _logger;
 
-        public DataInitialization(IExistingDataImporter importer, IImportAndSaveNewData saveNewData, ILogger<DataInitialization> logger)
+        public DataInitialization(IExistingDataReader reader, IFetchAndStoreUpdatedDataService storeUpdatedDataService, ILogger<DataInitialization> logger)
         {
-            _importer = importer;
-            _saveNewData = saveNewData;
+            _reader = reader;
+            _storeUpdatedDataService = storeUpdatedDataService;
             _logger = logger;
         }
 
@@ -26,14 +26,14 @@ namespace ShopInsights.Web.Stores
                 try
                 {
                     _logger.LogInformation("Import Existing");
-                    await _importer.ImportExistingAsync(stoppingToken);
+                    await _reader.ReadExistingAsync(stoppingToken);
                     if (stoppingToken.IsCancellationRequested)
                     {
                         return;
                     }
 
                     _logger.LogInformation("Import new and Save");
-                    await _saveNewData.ImportAndSaveAsync(stoppingToken);
+                    await _storeUpdatedDataService.FetchAndStoreAsync(stoppingToken);
 
                 }
                 catch (Exception e)
