@@ -1,3 +1,3 @@
 <template>
-  <router-view name="aside" />
+  <div></div>
 </template>

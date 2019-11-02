@@ -32,8 +32,4 @@ export default Layout
   .el-aside {
     background-color: #42b983;
   }
-
-  .el-header {
-    border-bottom: solid 1px #e6e6e6;
-  }
 </style>

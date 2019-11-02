@@ -76,6 +76,7 @@ namespace ShopInsights.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(builder => { builder.AllowAnyOrigin(); });
             }
             else
             {
