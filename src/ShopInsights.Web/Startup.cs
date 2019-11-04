@@ -11,9 +11,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using ShopifySharp;
 using ShopInsights.Core;
-using ShopInsights.Core.Services.Shopify;
-using ShopInsights.Core.Stores;
 using ShopInsights.Infrastructure;
+using ShopInsights.Shopify;
+using ShopInsights.Shopify.Services;
+using ShopInsights.Shopify.Stores;
 using ShopInsights.Web.Stores;
 
 namespace ShopInsights.Web
@@ -36,8 +37,7 @@ namespace ShopInsights.Web
             services.AddRazorPages();
             services.AddControllers();
 
-            services.AddInfrastructureServices();
-            services.AddCoreServices();
+            ShopifyServiceCollectionExtensions.AddShopifyServices(services);
 
             ConfigureOptions(services);
             ConfigureAppServices(services);
@@ -48,12 +48,12 @@ namespace ShopInsights.Web
 
         private void ConfigureAppServices(IServiceCollection services)
         {
-            services.AddTransient<IFetchAndStoreUpdatedDataService, FetchAndStoreUpdatedDataService>();
-            services.AddTransient<IExistingDataReader, ExistingDataReader>();
+            services.AddTransient<IFetchAndStoreUpdatedShopifyDataService, FetchAndStoreUpdatedShopifyDataService>();
+            services.AddTransient<IExistingShopifyDataReader, ExistingShopifyDataReader>();
         }
         private void ConfigureBackgroundServices(IServiceCollection services)
         {
-            services.AddHostedService<DataInitialization>();
+            services.AddHostedService<ShopifyDataInitialization>();
         }
 
         private void ConfigureOptions(IServiceCollection services)
@@ -66,7 +66,7 @@ namespace ShopInsights.Web
             services.AddOptions<StoreOptions>()
                 .Bind(Configuration.GetSection("Shop:Store"));
 
-            services.AddOptions<ShopifyAuthenticationOptions>()
+            services.AddOptions<ShopifyOptions>()
                 .Bind(Configuration.GetSection("Shopify"));
         }
 

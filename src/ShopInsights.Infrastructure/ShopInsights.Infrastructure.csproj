@@ -11,5 +11,6 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ShopInsights.Core\ShopInsights.Core.csproj" />
+        <ProjectReference Include="..\ShopInsights.Shopify\ShopInsights.Shopify.csproj" />
     </ItemGroup>
 </Project>

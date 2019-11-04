@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ShopifySharp;
-using ShopInsights.Core.Models;
+using ShopInsights.Shopify.Models;
 
 namespace ShopInsights.Web.Controllers
 {
@@ -11,16 +11,16 @@ namespace ShopInsights.Web.Controllers
     [Route("api/maps")]
     public class MapsController : Controller
     {
-        private readonly IOrderStorage _orderStorage;
+        private readonly IShopifyOrderStorage _shopifyOrderStorage;
 
-        public MapsController(IOrderStorage orderStorage)
+        public MapsController(IShopifyOrderStorage shopifyOrderStorage)
         {
-            _orderStorage = orderStorage;
+            _shopifyOrderStorage = shopifyOrderStorage;
         }
         [HttpGet("sales")]
         public IEnumerable<Feature> Index()
         {
-            var allOrders = _orderStorage.All;
+            var allOrders = _shopifyOrderStorage.All;
             var ordersWithCoordinates = allOrders.Where(HasCoordinates);
             foreach (var order in ordersWithCoordinates)
             {

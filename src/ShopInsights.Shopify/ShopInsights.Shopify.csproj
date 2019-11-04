@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ShopifySharp" Version="4.21.7" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="$(MicrosoftExtensionsVersion)" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="$(MicrosoftExtensionsVersion)" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
+        <PackageReference Include="Newtonsoft.Json" Version="$(JsonVersion)" />
+
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ShopInsights.Core\ShopInsights.Core.csproj" />
+    </ItemGroup>
+
+</Project>

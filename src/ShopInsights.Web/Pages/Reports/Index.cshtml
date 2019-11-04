@@ -52,7 +52,7 @@
         const from = $('[name=from]').val();
         const to = $('[name=to]').val();
         const location = $('[name=location]').val();
-        const url = `/api/reports/sales?from=${from}&to=${to}&location=${location}`;
+        const url = `/api/reports/months?from=${from}&to=${to}&location=${location}`;
         fetch(url)
         .then(response => {
            response.json().then(result=>{

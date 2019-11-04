@@ -1,4 +1,9 @@
 ﻿<Project>
+  <PropertyGroup>
+    <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
+    <CollectCoverage Condition="$(CollectCoverage)==''">false</CollectCoverage>
+  </PropertyGroup>
+
   <!-- these are the global nuget packages which should be used for every unit testing project, add a Directory.Builds.props file which imports this file-->
   <ItemGroup>
     <PackageReference Include="DerAlbert.Extensions.Fakes" Version="0.1.0" />
@@ -11,5 +16,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="1.1.0"/>
+
   </ItemGroup>
 </Project>
