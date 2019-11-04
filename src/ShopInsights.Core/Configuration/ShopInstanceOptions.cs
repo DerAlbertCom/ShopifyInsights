@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShopInsights.Core.Configuration
+namespace ShopInsights.Configuration
 {
     public class ShopInstanceOptions
     {

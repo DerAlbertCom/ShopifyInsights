@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShopInsights.Core
+namespace ShopInsights
 {
     public static class TimeZoneInfoExtensions {
 

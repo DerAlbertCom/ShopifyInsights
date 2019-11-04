@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using ShopifySharp;
-using ShopInsights.Core;
 using ShopInsights.Infrastructure;
 using ShopInsights.Shopify;
 using ShopInsights.Shopify.Services;

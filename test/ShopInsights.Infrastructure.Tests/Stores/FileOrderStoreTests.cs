@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using DerAlbert.Extensions.Fakes;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using ShopInsights.Core;
 using ShopInsights.Shopify;
 using ShopInsights.Shopify.Models;
 using ShopInsights.Shopify.Stores;
