@@ -14,5 +14,6 @@
 
     <ItemGroup>
       <Folder Include="Reports" />
+      <Folder Include="Shopify\Stores" />
     </ItemGroup>
 </Project>
