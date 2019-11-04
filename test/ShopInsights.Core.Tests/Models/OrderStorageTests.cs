@@ -9,7 +9,7 @@ using Xunit;
 
 namespace ShopInsights.Core.Tests.Models
 {
-    public class OrderStorageTests : WithSubject<OrderStorage>
+    public class OrderStorageTests : WithSubject<ShopifyOrderStorage>
     {
         public OrderStorageTests()
         {

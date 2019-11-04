@@ -9,9 +9,9 @@ namespace ShopInsights.Web.Pages
 {
     public class Import : PageModel
     {
-        public Import(IOrderStorage orderStorage, IOrderFilesReader reader)
+        public Import(IShopifyOrderStorage shopifyOrderStorage, IShopifyOrderFilesReader reader)
         {
-            _orderStorage = orderStorage;
+            _shopifyOrderStorage = shopifyOrderStorage;
             _reader = reader;
         }
 
@@ -31,9 +31,9 @@ namespace ShopInsights.Web.Pages
         }
 
 
-        public bool ShowImport => !_orderStorage.All.Any();
+        public bool ShowImport => !_shopifyOrderStorage.All.Any();
 
-        private readonly IOrderStorage _orderStorage;
-        private readonly IOrderFilesReader _reader;
+        private readonly IShopifyOrderStorage _shopifyOrderStorage;
+        private readonly IShopifyOrderFilesReader _reader;
     }
 }

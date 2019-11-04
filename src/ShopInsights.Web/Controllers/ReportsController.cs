@@ -12,7 +12,7 @@ namespace ShopInsights.Web.Controllers
     [Route("api/reports")]
     public class ReportsController : Controller
     {
-        public ReportsController(IOrderStorage storage)
+        public ReportsController(IShopifyOrderStorage storage)
         {
             _storage = storage;
         }
@@ -188,6 +188,6 @@ namespace ShopInsights.Web.Controllers
             return list;
         }
 
-        private readonly IOrderStorage _storage;
+        private readonly IShopifyOrderStorage _storage;
     }
 }

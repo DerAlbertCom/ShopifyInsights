@@ -9,17 +9,17 @@ namespace ShopInsights.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
-            services.TryAddTransient<IOrderFilesReader,OrderFilesReader>();
-            services.TryAddTransient<IProductFilesReader,ProductFilesReader>();
-            services.TryAddTransient<ICustomerFilesReader,CustomerFilesReader>();
-            services.TryAddTransient<IMetaFieldFilesReader,MetaFieldFilesReader>();
-            services.TryAddTransient<ILocationFilesReader,LocationFilesReader>();
+            services.TryAddTransient<IShopifyOrderFilesReader,ShopifyOrderFilesReader>();
+            services.TryAddTransient<IShopifyProductFilesReader,ShopifyProductFilesReader>();
+            services.TryAddTransient<IShopifyCustomerFilesReader,ShopifyCustomerFilesReader>();
+            services.TryAddTransient<IShopifyMetaFieldFilesReader,ShopifyMetaFieldFilesReader>();
+            services.TryAddTransient<ILocationShopifyFilesReader,LocationShopifyFilesReader>();
 
-            services.AddTransient<IOrderFilesWriter, OrderFileWriter>();
-            services.AddTransient<IProductFilesWriter, ProductFileWriter>();
-            services.AddTransient<ICustomerFilesWriter, CustomerFileWriter>();
-            services.AddTransient<IMetaFieldFilesWriter, MetaFieldFileWriter>();
-            services.AddTransient<ILocationFilesWriter, LocationFileWriter>();
+            services.AddTransient<IShopifyOrderFilesWriter, ShopifyOrderFileWriter>();
+            services.AddTransient<IShopifyProductFilesWriter, ShopifyProductFileWriter>();
+            services.AddTransient<ICustomerShopifyFilesWriter, CustomerShopifyFileWriter>();
+            services.AddTransient<IShopifyMetaFieldFilesWriter, ShopifyMetaFieldFileWriter>();
+            services.AddTransient<ILocationShopifyFilesWriter, LocationShopifyFileWriter>();
 
             return services;
         }

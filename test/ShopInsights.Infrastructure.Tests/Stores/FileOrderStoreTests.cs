@@ -11,7 +11,7 @@ using Xunit;
 
 namespace ShopInsights.Infrastructure.Tests.Stores
 {
-    public class FileOrderStoreTests : WithSubject<OrderFilesReader>
+    public class FileOrderStoreTests : WithSubject<ShopifyOrderFilesReader>
     {
         public FileOrderStoreTests()
         {
@@ -25,7 +25,7 @@ namespace ShopInsights.Infrastructure.Tests.Stores
 
             await Subject.ImportExistingAsync("C:\\dev\\private\\ShopifyMetaFieldEditor\\ShopifyMetafieldEditor", CancellationToken.None);
 
-            The<IOrderStorage>().All.Count().Should().Be(870);
+            The<IShopifyOrderStorage>().All.Count().Should().Be(870);
         }
     }
 }

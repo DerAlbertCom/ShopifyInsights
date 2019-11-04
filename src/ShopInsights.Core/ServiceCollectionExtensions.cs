@@ -10,17 +10,17 @@ namespace ShopInsights.Core
     {
         public static IServiceCollection AddCoreServices(this IServiceCollection services)
         {
-            services.TryAddSingleton<IOrderStorage, OrderStorage>();
-            services.TryAddSingleton<IProductStorage, ProductStorage>();
-            services.TryAddSingleton<ICustomerStorage, CustomerStorage>();
-            services.TryAddSingleton<IMetaFieldStorage, MetaFieldStorage>();
+            services.TryAddSingleton<IShopifyOrderStorage, ShopifyOrderStorage>();
+            services.TryAddSingleton<IShopifyProductStorage, ShopifyProductStorage>();
+            services.TryAddSingleton<IShopifyCustomerStorage, ShopifyCustomerStorage>();
+            services.TryAddSingleton<IShopifyMetaFieldStorage, ShopifyMetaFieldStorage>();
             services.TryAddSingleton<ILocationStorage, LocationStorage>();
 
-            services.AddTransient<IProductFetchAndStoreService, ProductFetchAndStoreService>();
-            services.AddTransient<ICustomerFetchAndStoreService, CustomerFetchAndStoreService>();
-            services.AddTransient<IOrderFetchAndStoreService, OrderFetchAndStoreService>();
-            services.AddTransient<IMetaFieldFetchAndStoreService, MetaFieldFetchAndStoreService>();
-            services.AddTransient<ILocationFetchAndStoreService, LocationFetchAndStoreService>();
+            services.AddTransient<IShopifyProductShopifyFetchAndStoreService, ShopifyProductShopifyFetchAndStoreService>();
+            services.AddTransient<IShopifyCustomerShopifyFetchAndStoreService, ShopifyCustomerShopifyFetchAndStoreService>();
+            services.AddTransient<IShopifyOrderShopifyFetchAndStoreService, ShopifyOrderShopifyFetchAndStoreService>();
+            services.AddTransient<IShopifyMetaFieldShopifyFetchAndStoreService, ShopifyMetaFieldShopifyFetchAndStoreService>();
+            services.AddTransient<ILocationShopifyFetchAndStoreService, LocationShopifyFetchAndStoreService>();
             services.AddShopifyServices();
             return services;
         }

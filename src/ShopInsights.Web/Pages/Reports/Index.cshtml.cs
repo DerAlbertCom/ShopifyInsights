@@ -10,9 +10,9 @@ namespace ShopInsights.Web.Pages.Reports
 {
     public class Index : PageModel
     {
-        public Index(IOrderStorage orderStorage, ILocationStorage locationStorage)
+        public Index(IShopifyOrderStorage shopifyOrderStorage, ILocationStorage locationStorage)
         {
-            _orderStorage = orderStorage;
+            _shopifyOrderStorage = shopifyOrderStorage;
             _locationStorage = locationStorage;
         }
 
@@ -35,7 +35,7 @@ namespace ShopInsights.Web.Pages.Reports
         public DateTime To { get; set; }
 
         public List<SelectListItem> LocationItems { get; } = new List<SelectListItem>();
-        private readonly IOrderStorage _orderStorage;
+        private readonly IShopifyOrderStorage _shopifyOrderStorage;
         private readonly ILocationStorage _locationStorage;
     }
 }
