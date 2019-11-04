@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using DerAlbert.Extensions.Fakes;
@@ -19,10 +20,9 @@ namespace ShopInsights.Infrastructure.Tests.Stores
             Services.AddOptions();
         }
 
-        [Fact]
+        [Fact(Skip = "the files are not present in the repository, should be changed. or removed.")]
         public async Task Should_load_to_Orders()
         {
-
             await Subject.ImportExistingAsync("C:\\dev\\private\\ShopifyMetaFieldEditor\\ShopifyMetafieldEditor", CancellationToken.None);
 
             The<IOrderStorage>().All.Count().Should().Be(870);
