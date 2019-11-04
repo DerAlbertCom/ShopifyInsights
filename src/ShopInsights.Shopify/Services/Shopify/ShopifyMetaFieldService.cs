@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ShopifySharp;
 using ShopifySharp.Filters;
 
-namespace ShopInsights.Core.Services.Shopify
+namespace ShopInsights.Shopify.Services.Shopify
 {
     internal class ShopifyMetaFieldService : IShopifyMetaFieldService
     {
@@ -26,21 +26,6 @@ namespace ShopInsights.Core.Services.Shopify
             };
             var metaFields = await _metaFieldService.ListAsync(filter);
             return metaFields.ToArray();
-        }
-    }
-    internal class ShopifyLocationService : IShopifyLocationService
-    {
-        private readonly LocationService _locationService;
-
-        public ShopifyLocationService(LocationService locationService)
-        {
-            _locationService = locationService;
-        }
-
-        public async Task<IReadOnlyCollection<Location>> ListUpdatedSinceAsync()
-        {
-            var locations = await _locationService.ListAsync();
-            return locations.ToArray();
         }
     }
 }

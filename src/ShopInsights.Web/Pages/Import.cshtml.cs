@@ -2,8 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShopInsights.Core.Models;
-using ShopInsights.Core.Stores;
+using ShopInsights.Shopify.Models;
+using ShopInsights.Shopify.Stores;
 
 namespace ShopInsights.Web.Pages
 {

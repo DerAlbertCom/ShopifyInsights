@@ -4,10 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ShopifySharp;
-using ShopInsights.Core.Models;
-using ShopInsights.Core.Stores;
+using ShopInsights.Shopify.Models;
 
-namespace ShopInsights.Infrastructure.Stores
+namespace ShopInsights.Shopify.Stores
 {
     public abstract class ShopifyFilesWriter<T> : IShopifyFilesWriter<T> where T : ShopifyObject
     {

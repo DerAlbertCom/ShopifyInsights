@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using ShopifySharp;
 
-namespace ShopInsights.Core.Services.Shopify
+namespace ShopInsights.Shopify.Services.Shopify
 {
     class ProductShopifyFetcher : IProductShopifyFetcher
     {

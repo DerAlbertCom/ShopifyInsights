@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ShopifySharp;
 
-namespace ShopInsights.Core.Services.Shopify
+namespace ShopInsights.Shopify.Services.Shopify
 {
     public interface IShopifyFetcher<T> where T : ShopifyObject
     {

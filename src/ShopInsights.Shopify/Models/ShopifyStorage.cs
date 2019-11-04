@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Options;
 using ShopifySharp;
+using ShopInsights.Core;
 using ShopInsights.Core.Configuration;
 
-namespace ShopInsights.Core.Models
+namespace ShopInsights.Shopify.Models
 {
     public abstract class ShopifyStorage<T> : IShopifyStorage<T> where T : ShopifyObject
     {

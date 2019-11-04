@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ShopifySharp;
-using ShopInsights.Core.Models;
+using ShopInsights.Shopify.Models;
 
 namespace ShopInsights.Web.Controllers
 {

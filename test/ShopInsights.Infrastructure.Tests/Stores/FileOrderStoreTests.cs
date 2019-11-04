@@ -5,8 +5,9 @@ using DerAlbert.Extensions.Fakes;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using ShopInsights.Core;
-using ShopInsights.Core.Models;
-using ShopInsights.Infrastructure.Stores;
+using ShopInsights.Shopify;
+using ShopInsights.Shopify.Models;
+using ShopInsights.Shopify.Stores;
 using Xunit;
 
 namespace ShopInsights.Infrastructure.Tests.Stores
@@ -15,7 +16,7 @@ namespace ShopInsights.Infrastructure.Tests.Stores
     {
         public FileOrderStoreTests()
         {
-            Services.AddCoreServices();
+            Services.AddShopifyServices();
             Services.AddOptions();
         }
 

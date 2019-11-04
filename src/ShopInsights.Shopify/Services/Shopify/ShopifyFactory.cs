@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using ShopifySharp;
 
-namespace ShopInsights.Core.Services.Shopify
+namespace ShopInsights.Shopify.Services.Shopify
 {
     public class ShopifyFactory : IShopifyFactory
     {

@@ -2,17 +2,11 @@
 using ShopifySharp;
 using ShopInsights.Core.Configuration;
 
-namespace ShopInsights.Core.Models
+namespace ShopInsights.Shopify.Models
 {
     public class ShopifyMetaFieldStorage : ShopifyStorage<MetaField>, IShopifyMetaFieldStorage
     {
         public ShopifyMetaFieldStorage(IOptions<ShopInstanceOptions> optionsAccessor) : base(optionsAccessor, c =>c .CreatedAt, c=> c.UpdatedAt)
-        {
-        }
-    }
-    public class LocationStorage : ShopifyStorage<Location>, ILocationStorage
-    {
-        public LocationStorage(IOptions<ShopInstanceOptions> optionsAccessor) : base(optionsAccessor, c =>c .CreatedAt, c=> c.UpdatedAt)
         {
         }
     }

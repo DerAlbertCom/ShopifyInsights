@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ShopifySharp;
 
-namespace ShopInsights.Core.Models
+namespace ShopInsights.Shopify.Models
 {
     public interface IShopifyDictionary<TKey, TShopify> : IEnumerable<KeyValuePair<TKey, TShopify>> where TKey : struct where TShopify : ShopifyObject
     {

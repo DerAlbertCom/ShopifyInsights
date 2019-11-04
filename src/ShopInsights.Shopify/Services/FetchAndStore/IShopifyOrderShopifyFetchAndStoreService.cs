@@ -1,6 +1,6 @@
 ﻿using ShopifySharp;
 
-namespace ShopInsights.Core.Services.FetchAndStore
+namespace ShopInsights.Shopify.Services.FetchAndStore
 {
     public interface IShopifyOrderShopifyFetchAndStoreService : IShopifyFetchAndStoreService<Order>
     {

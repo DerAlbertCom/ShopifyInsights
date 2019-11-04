@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ShopifySharp;
-using ShopInsights.Core.Models;
-using ShopInsights.Core.Services.Shopify;
-using ShopInsights.Core.Stores;
+using ShopInsights.Shopify.Models;
+using ShopInsights.Shopify.Services.Shopify;
+using ShopInsights.Shopify.Stores;
 
-namespace ShopInsights.Core.Services.FetchAndStore
+namespace ShopInsights.Shopify.Services.FetchAndStore
 {
     public abstract class ShopifyFetchAndStoreService<T> : IShopifyFetchAndStoreService<T> where T : ShopifyObject
     {
         private readonly IOptions<StoreOptions> _optionsAccessor;
-        private readonly IShopifyFetcher<T> _shopifyFetcher;
+        private readonly IShopifyFetcher<T> _fetcher;
         private readonly IShopifyStorage<T> _storage;
         private readonly IShopifyFilesWriter<T> _filesWriter;
         private readonly string _folder;
@@ -24,7 +24,7 @@ namespace ShopInsights.Core.Services.FetchAndStore
 
         protected ShopifyFetchAndStoreService(
             IOptions<StoreOptions> optionsAccessor,
-            IShopifyFetcher<T> shopifyFetcher,
+            IShopifyFetcher<T> fetcher,
             IShopifyStorage<T> storage,
             IShopifyFilesWriter<T> filesWriter,
             string folder,
@@ -32,7 +32,7 @@ namespace ShopInsights.Core.Services.FetchAndStore
             ILogger logger)
         {
             _optionsAccessor = optionsAccessor;
-            _shopifyFetcher = shopifyFetcher;
+            _fetcher = fetcher;
             _storage = storage;
             _filesWriter = filesWriter;
             _folder = folder;
@@ -50,7 +50,7 @@ namespace ShopInsights.Core.Services.FetchAndStore
             }
 
             _logger.LogInformation("Loading new {type}s", typeof(T).Name);
-            var products = await _shopifyFetcher.GetUpdatedSinceAsync(maxUpdate.Value, stoppingToken);
+            var products = await _fetcher.GetUpdatedSinceAsync(maxUpdate.Value, stoppingToken);
 
             if (stoppingToken.IsCancellationRequested)
             {

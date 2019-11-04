@@ -4,10 +4,10 @@ using DerAlbert.Extensions.Fakes;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using ShopifySharp;
-using ShopInsights.Core.Models;
+using ShopInsights.Shopify.Models;
 using Xunit;
 
-namespace ShopInsights.Core.Tests.Models
+namespace ShopInsights.Shopify.Tests.Models
 {
     public class ShopifyOrderStorageTests : WithSubject<ShopifyOrderStorage>
     {

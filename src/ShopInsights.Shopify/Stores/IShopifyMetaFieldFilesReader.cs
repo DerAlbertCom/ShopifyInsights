@@ -1,11 +1,8 @@
 ﻿using ShopifySharp;
 
-namespace ShopInsights.Core.Stores
+namespace ShopInsights.Shopify.Stores
 {
     public interface IShopifyMetaFieldFilesReader : IShopifyFilesReader<MetaField>
-    {
-    }
-    public interface ILocationShopifyFilesReader : IShopifyFilesReader<Location>
     {
     }
 }

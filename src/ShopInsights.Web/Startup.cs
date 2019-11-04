@@ -11,9 +11,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using ShopifySharp;
 using ShopInsights.Core;
-using ShopInsights.Core.Services.Shopify;
-using ShopInsights.Core.Stores;
 using ShopInsights.Infrastructure;
+using ShopInsights.Shopify;
+using ShopInsights.Shopify.Services.Shopify;
+using ShopInsights.Shopify.Stores;
 using ShopInsights.Web.Stores;
 
 namespace ShopInsights.Web
@@ -36,8 +37,7 @@ namespace ShopInsights.Web
             services.AddRazorPages();
             services.AddControllers();
 
-            services.AddInfrastructureServices();
-            services.AddCoreServices();
+            ShopifyServiceCollectionExtensions.AddShopifyServices(services);
 
             ConfigureOptions(services);
             ConfigureAppServices(services);

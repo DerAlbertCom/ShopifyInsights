@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ShopifySharp;
 
-namespace ShopInsights.Core.Stores
+namespace ShopInsights.Shopify.Stores
 {
     public interface IShopifyFilesWriter<T> where T: ShopifyObject
     {

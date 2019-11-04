@@ -1,6 +1,6 @@
 ﻿using ShopifySharp;
 
-namespace ShopInsights.Core.Services.Shopify
+namespace ShopInsights.Shopify.Services.Shopify
 {
     public interface IProductShopifyFetcher : IShopifyFetcher<Product>
     {

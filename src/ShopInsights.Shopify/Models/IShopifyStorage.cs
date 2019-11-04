@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ShopifySharp;
 
-namespace ShopInsights.Core.Models
+namespace ShopInsights.Shopify.Models
 {
     public interface IShopifyStorage<T>  where T : ShopifyObject
     {

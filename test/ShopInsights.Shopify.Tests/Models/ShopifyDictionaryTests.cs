@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
-using DerAlbert.Extensions.Fakes;
 using FluentAssertions;
 using ShopifySharp;
-using ShopInsights.Core.Models;
+using ShopInsights.Shopify.Models;
 using Xunit;
 
-namespace ShopInsights.Core.Tests.Models
+namespace ShopInsights.Shopify.Tests.Models
 {
     public class ShopifyDictionaryTests
     {

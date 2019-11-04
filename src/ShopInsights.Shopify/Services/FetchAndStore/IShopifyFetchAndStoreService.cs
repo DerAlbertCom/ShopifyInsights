@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ShopifySharp;
 
-namespace ShopInsights.Core.Services.FetchAndStore
+namespace ShopInsights.Shopify.Services.FetchAndStore
 {
     public interface IShopifyFetchAndStoreService<T> where T : ShopifyObject
     {

@@ -7,10 +7,9 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ShopifySharp;
-using ShopInsights.Core.Models;
-using ShopInsights.Core.Stores;
+using ShopInsights.Shopify.Models;
 
-namespace ShopInsights.Infrastructure.Stores
+namespace ShopInsights.Shopify.Stores
 {
     public abstract class ShopifyFilesReader<T> : IShopifyFilesReader<T> where T : ShopifyObject
     {

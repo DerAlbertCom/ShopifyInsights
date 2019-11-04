@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using ShopInsights.Core.Stores;
+using ShopInsights.Shopify.Stores;
 
 namespace ShopInsights.Web.Stores
 {
@@ -14,7 +14,7 @@ namespace ShopInsights.Web.Stores
             IShopifyProductFilesReader shopifyProductReader,
             IShopifyCustomerFilesReader shopifyCustomerReader,
             IShopifyMetaFieldFilesReader shopifyMetaFieldReader,
-            ILocationShopifyFilesReader locationShopifyReader,
+            IShopifyLocationFilesReader shopifyLocationReader,
             IOptions<StoreOptions> optionsAccessor,
             ILogger<ExistingShopifyDataReader> logger)
         {
@@ -22,7 +22,7 @@ namespace ShopInsights.Web.Stores
             _shopifyProductReader = shopifyProductReader;
             _shopifyCustomerReader = shopifyCustomerReader;
             _shopifyMetaFieldReader = shopifyMetaFieldReader;
-            _locationShopifyReader = locationShopifyReader;
+            _shopifyLocationReader = shopifyLocationReader;
             _logger = logger;
             _optionsAccessor = optionsAccessor;
         }
@@ -53,7 +53,7 @@ namespace ShopInsights.Web.Stores
             var locationPath = Path.Combine(filePath, "locations");
             EnsurePath(locationPath);
             _logger.LogDebug("Import from {path}", locationPath);
-            await _locationShopifyReader.ImportExistingAsync(locationPath, stoppingToken);
+            await _shopifyLocationReader.ImportExistingAsync(locationPath, stoppingToken);
         }
 
         private void EnsurePath(string path)
@@ -68,7 +68,7 @@ namespace ShopInsights.Web.Stores
         private readonly IShopifyProductFilesReader _shopifyProductReader;
         private readonly IShopifyCustomerFilesReader _shopifyCustomerReader;
         private readonly IShopifyMetaFieldFilesReader _shopifyMetaFieldReader;
-        private readonly ILocationShopifyFilesReader _locationShopifyReader;
+        private readonly IShopifyLocationFilesReader _shopifyLocationReader;
         private readonly ILogger<ExistingShopifyDataReader> _logger;
         private readonly IOptions<StoreOptions> _optionsAccessor;
     }

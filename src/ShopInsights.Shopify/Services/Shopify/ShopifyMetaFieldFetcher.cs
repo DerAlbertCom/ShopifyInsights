@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using ShopifySharp;
 
-namespace ShopInsights.Core.Services.Shopify
+namespace ShopInsights.Shopify.Services.Shopify
 {
-    class MetaFieldShopifyFetcher : IMetaFieldShopifyFetcher
+    class ShopifyMetaFieldFetcher : IShopifyMetaFieldFetcher
     {
         private readonly IShopifyMetaFieldService _metaFieldService;
-        private readonly ILogger<MetaFieldShopifyFetcher> _logger;
+        private readonly ILogger<ShopifyMetaFieldFetcher> _logger;
 
-        public MetaFieldShopifyFetcher(IShopifyMetaFieldService metaFieldService, ILogger<MetaFieldShopifyFetcher> logger)
+        public ShopifyMetaFieldFetcher(IShopifyMetaFieldService metaFieldService, ILogger<ShopifyMetaFieldFetcher> logger)
         {
             _metaFieldService = metaFieldService;
             _logger = logger;
@@ -61,48 +61,6 @@ namespace ShopInsights.Core.Services.Shopify
             } while (loadedMetaField.Any());
 
             return metaFields.Values;
-
-        }
-    }
-    class LocationShopifyFetcher : ILocationShopifyFetcher
-    {
-        private readonly IShopifyLocationService _locationService;
-        private readonly ILogger<LocationShopifyFetcher> _logger;
-
-        public LocationShopifyFetcher(IShopifyLocationService locationService, ILogger<LocationShopifyFetcher> logger)
-        {
-            _locationService = locationService;
-            _logger = logger;
-        }
-
-        public async Task<IReadOnlyCollection<Location>> GetUpdatedSinceAsync(DateTimeOffset sinceDate,
-            CancellationToken stoppingToken)
-        {
-            _logger.LogDebug("Importing Locations from Shopify since {dateTime}", sinceDate);
-
-            var locations = new Dictionary<long,Location>();
-
-            IReadOnlyCollection<Location> loadedLocation;
-
-            do
-            {
-                if (stoppingToken.IsCancellationRequested)
-                {
-                    return Array.Empty<Location>();
-                }
-
-                loadedLocation = await _locationService.ListUpdatedSinceAsync();
-                _logger.LogInformation("Fetched {count} Locations", loadedLocation.Count);
-
-                if (!locations.AddUnique(loadedLocation))
-                {
-                    break;
-                }
-
-
-            } while (loadedLocation.Any());
-
-            return locations.Values;
 
         }
     }

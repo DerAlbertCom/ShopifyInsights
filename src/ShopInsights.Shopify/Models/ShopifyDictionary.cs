@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using ShopifySharp;
 
-namespace ShopInsights.Core.Models
+namespace ShopInsights.Shopify.Models
 {
     public  class ShopifyDictionary<TKey, TShopify> : IShopifyDictionary<TKey, TShopify> where TKey : struct
         where TShopify : ShopifyObject

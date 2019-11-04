@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using ShopInsights.Core.Services.FetchAndStore;
-using ShopInsights.Core.Services.Shopify;
+using ShopInsights.Shopify.Services.FetchAndStore;
+using ShopInsights.Shopify.Services.Shopify;
 
 namespace ShopInsights.Web.Stores
 {

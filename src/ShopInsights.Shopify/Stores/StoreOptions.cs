@@ -1,4 +1,4 @@
-﻿namespace ShopInsights.Core.Stores
+﻿namespace ShopInsights.Shopify.Stores
 {
     public class StoreOptions
     {

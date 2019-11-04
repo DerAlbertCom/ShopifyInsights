@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 
-namespace ShopInsights.Core.Stores
+namespace ShopInsights.Shopify.Stores
 {
     public class OrderStoreOptionsValidator : IValidateOptions<OrderStoreOptions>
     {

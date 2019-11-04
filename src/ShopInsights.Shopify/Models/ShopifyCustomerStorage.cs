@@ -2,7 +2,7 @@
 using ShopifySharp;
 using ShopInsights.Core.Configuration;
 
-namespace ShopInsights.Core.Models
+namespace ShopInsights.Shopify.Models
 {
     public class ShopifyCustomerStorage : ShopifyStorage<Customer>, IShopifyCustomerStorage
     {

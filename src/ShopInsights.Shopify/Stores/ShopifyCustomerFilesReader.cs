@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using ShopifySharp;
-using ShopInsights.Core.Models;
-using ShopInsights.Core.Stores;
+using ShopInsights.Shopify.Models;
 
-namespace ShopInsights.Infrastructure.Stores
+namespace ShopInsights.Shopify.Stores
 {
     public class ShopifyCustomerFilesReader : ShopifyFilesReader<Customer>, IShopifyCustomerFilesReader
     {

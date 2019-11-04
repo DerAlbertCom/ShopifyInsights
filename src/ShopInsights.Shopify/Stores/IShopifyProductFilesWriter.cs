@@ -1,6 +1,6 @@
 ﻿using ShopifySharp;
 
-namespace ShopInsights.Core.Stores
+namespace ShopInsights.Shopify.Stores
 {
     public interface IShopifyProductFilesWriter : IShopifyFilesWriter<Product>
     {

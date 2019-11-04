@@ -1,12 +1,8 @@
 ﻿using ShopifySharp;
 
-namespace ShopInsights.Core.Models
+namespace ShopInsights.Shopify.Models
 {
     public interface IShopifyMetaFieldStorage : IShopifyStorage<MetaField>
-    {
-
-    }
-    public interface ILocationStorage : IShopifyStorage<Location>
     {
 
     }
