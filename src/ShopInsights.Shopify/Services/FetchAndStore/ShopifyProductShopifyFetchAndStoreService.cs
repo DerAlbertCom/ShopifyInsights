@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Options;
 using ShopifySharp;
 using ShopInsights.Shopify.Models;
-using ShopInsights.Shopify.Services.Shopify;
 using ShopInsights.Shopify.Stores;
 
 namespace ShopInsights.Shopify.Services.FetchAndStore

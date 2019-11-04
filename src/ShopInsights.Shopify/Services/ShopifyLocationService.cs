@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ShopifySharp;
 
-namespace ShopInsights.Shopify.Services.Shopify
+namespace ShopInsights.Shopify.Services
 {
     internal class ShopifyLocationService : IShopifyLocationService
     {

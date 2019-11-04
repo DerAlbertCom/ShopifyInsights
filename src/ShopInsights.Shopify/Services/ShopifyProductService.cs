@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ShopifySharp;
 using ShopifySharp.Filters;
 
-namespace ShopInsights.Shopify.Services.Shopify
+namespace ShopInsights.Shopify.Services
 {
     internal class ShopifyProductService : IShopifyProductService
     {

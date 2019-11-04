@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using ShopInsights.Shopify.Models;
+using ShopInsights.Shopify.Services;
 using ShopInsights.Shopify.Services.FetchAndStore;
-using ShopInsights.Shopify.Services.Shopify;
 using ShopInsights.Shopify.Stores;
 
 namespace ShopInsights.Shopify

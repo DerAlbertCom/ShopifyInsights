@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ShopifySharp;
 
-namespace ShopInsights.Shopify.Services.Shopify
+namespace ShopInsights.Shopify.Services
 {
     public interface IShopifyLocationService
     {

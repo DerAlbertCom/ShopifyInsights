@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ShopifySharp;
 
-namespace ShopInsights.Shopify.Services.Shopify
+namespace ShopInsights.Shopify.Services
 {
     internal static class ShopifyExtensions
     {

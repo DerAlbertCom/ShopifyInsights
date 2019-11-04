@@ -1,4 +1,4 @@
-﻿﻿namespace ShopInsights.Shopify.Services.Shopify
+﻿﻿namespace ShopInsights.Shopify.Services
 {
     public class ShopifyOptions
     {

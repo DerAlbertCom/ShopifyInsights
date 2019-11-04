@@ -1,6 +1,6 @@
 ﻿using ShopifySharp;
 
-namespace ShopInsights.Shopify.Services.Shopify
+namespace ShopInsights.Shopify.Services
 {
     public interface IShopifyMetaFieldFetcher : IShopifyFetcher<MetaField>
     {

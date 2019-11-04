@@ -13,7 +13,7 @@ using ShopifySharp;
 using ShopInsights.Core;
 using ShopInsights.Infrastructure;
 using ShopInsights.Shopify;
-using ShopInsights.Shopify.Services.Shopify;
+using ShopInsights.Shopify.Services;
 using ShopInsights.Shopify.Stores;
 using ShopInsights.Web.Stores;
 
