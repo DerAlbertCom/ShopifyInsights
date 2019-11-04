@@ -9,9 +9,9 @@ using Xunit;
 
 namespace ShopInsights.Core.Tests.Models
 {
-    public class OrderStorageTests : WithSubject<ShopifyOrderStorage>
+    public class ShopifyOrderStorageTests : WithSubject<ShopifyOrderStorage>
     {
-        public OrderStorageTests()
+        public ShopifyOrderStorageTests()
         {
             Services.AddOptions();
         }
