@@ -10,5 +10,10 @@
         Karte
       </router-link>
     </li>
+    <li>
+      <router-link :to="{ name: 'reports-sales' }">
+        Verkäufe
+      </router-link>
+    </li>
   </ul>
 </template>

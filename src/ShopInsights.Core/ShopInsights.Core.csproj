@@ -12,4 +12,8 @@
         <PackageReference Include="Newtonsoft.Json" Version="$(JsonVersion)" />
         <PackageReference Include="ShopifySharp" Version="4.21.6" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Model" />
+    </ItemGroup>
 </Project>
