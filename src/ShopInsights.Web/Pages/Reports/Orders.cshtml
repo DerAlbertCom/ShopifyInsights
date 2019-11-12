@@ -1,0 +1,16 @@
+﻿@page
+@model ShopInsights.Web.Pages.Reports.Orders
+
+
+    <h2>Bestellung an einem Standort</h2>
+
+@foreach (var kv in Model.Locations)
+{
+    <h3>@kv.Key</h3>
+    <ul>
+    @foreach (var data in kv.Value)
+    {
+        <li><a asp-page="OrdersList" asp-route-orderdate="@data.ToString("yyyy-M-d")">@data.ToShortDateString()</a></li>
+    }
+</ul>
+}
