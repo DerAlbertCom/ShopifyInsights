@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -29,7 +30,7 @@ namespace ShopInsights.Web.Stores
 
         public async Task ReadExistingAsync(CancellationToken stoppingToken)
         {
-            var filePath = _optionsAccessor.Value.FilePath;
+            var filePath = _optionsAccessor.Value.GetFilePath();
             var orderPath = Path.Combine(filePath, "orders");
             EnsurePath(orderPath);
             _logger.LogDebug("Import from {path}", orderPath);
@@ -55,6 +56,7 @@ namespace ShopInsights.Web.Stores
             _logger.LogDebug("Import from {path}", locationPath);
             await _shopifyLocationReader.ImportExistingAsync(locationPath, stoppingToken);
         }
+
 
         private void EnsurePath(string path)
         {

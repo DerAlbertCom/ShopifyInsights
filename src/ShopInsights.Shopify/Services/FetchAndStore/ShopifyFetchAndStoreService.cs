@@ -60,7 +60,7 @@ namespace ShopInsights.Shopify.Services.FetchAndStore
 
             _logger.LogInformation("Storing newly fetched {type}s", typeof(T).Name);
 
-            await _filesWriter.StoreFilesAsync(Path.Combine(_optionsAccessor.Value.FilePath, _folder),
+            await _filesWriter.StoreFilesAsync(Path.Combine(_optionsAccessor.Value.GetFilePath(), _folder),
                 stoppingToken);
         }
     }
