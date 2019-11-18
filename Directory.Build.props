@@ -15,6 +15,6 @@
     <DisableGitVersionTask>true</DisableGitVersionTask>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="5.1.1" PrivateAssets="All" />
+    <PackageReference Include="GitVersionTask" Version="5.1.2" PrivateAssets="All" />
   </ItemGroup>
 </Project>
