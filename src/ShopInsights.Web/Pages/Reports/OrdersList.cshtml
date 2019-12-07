@@ -7,7 +7,7 @@
     @foreach (var order in Model.Orders)
     {
         <tr>
-            <td colspan="4">@order.Name (@order.CreatedAt.Value.ToString("d"))</td>
+            <td colspan="4">@order.Name (@order.CreatedAt.Value.ToString("d")) @order.FinancialStatus </td>
         </tr>
         foreach (var line in order.LineItems)
         {
@@ -22,7 +22,7 @@
         if (price != order.TotalPrice)
         {
             <tr>
-                <td colspan="4" class="text-right">(Warenwert: @price)   <em>Rabattpreis: @order.TotalPrice</em></td>
+                <td colspan="4" class="text-right">(Warenwert: @price)  <em>Rabattpreis: @order.TotalPrice</em></td>
             </tr>
 
         }

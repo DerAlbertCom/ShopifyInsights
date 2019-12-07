@@ -24,6 +24,7 @@ namespace ShopInsights.Web.Pages.Reports
         {
             Orders = _orderStorage.GetForDate(orderDate.Date)
                 .Where(o => o.LocationId.HasValue)
+                .Where(o => !string.Equals(o.FinancialStatus, "refunded", StringComparison.OrdinalIgnoreCase))
                 .OrderBy(o => o.OrderNumber.Value).ToArray();
 
         }
