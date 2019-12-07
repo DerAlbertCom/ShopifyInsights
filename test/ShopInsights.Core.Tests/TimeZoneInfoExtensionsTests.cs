@@ -17,14 +17,25 @@ namespace ShopInsights.Core.Tests
         [Fact]
         public void TestName()
         {
-            var timeZone = TimeZoneInfo.GetSystemTimeZones().First(ti => ti.StandardName == "W. Europe Standard Time");
+            var timeZone = GetDefaultTimeZone();
 
             var dateTimeOffset = new DateTimeOffset(2019,1,1,0,0,0, TimeSpan.FromHours(2));
             var result = timeZone.GetTimeZoneCorrectedDate(dateTimeOffset);
-             
+
             result.Month.Should().Be(12);
             result.Year.Should().Be(2018);
             result.Day.Should().Be(31);
+        }
+
+        private static TimeZoneInfo GetDefaultTimeZone()
+        {
+            var name = TimeZoneInfo.Local.StandardName;
+            return TimeZoneInfo
+                       .GetSystemTimeZones()
+                       .FirstOrDefault(ti => ti.StandardName == "W. Europe Standard Time")
+                   ??
+                   TimeZoneInfo.GetSystemTimeZones()
+                       .First(ti => ti.Id == "Europe/Berlin");
         }
     }
 }
