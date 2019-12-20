@@ -29,7 +29,6 @@ namespace ShopInsights.Core.Tests
 
         private static TimeZoneInfo GetDefaultTimeZone()
         {
-            var name = TimeZoneInfo.Local.StandardName;
             return TimeZoneInfo
                        .GetSystemTimeZones()
                        .FirstOrDefault(ti => ti.StandardName == "W. Europe Standard Time")
