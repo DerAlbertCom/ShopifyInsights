@@ -5,12 +5,12 @@ using ShopInsights.Services.Events;
 
 namespace ShopInsights.Services
 {
-    public class DataEventDictionary
+    public class DataChangedEventDictionary
     {
         readonly DataChangedEvent _dataChangedEvent;
         readonly Dictionary<Type, Type> _dictionary;
 
-        public DataEventDictionary(DataChangedEvent dataChangedEvent)
+        public DataChangedEventDictionary(DataChangedEvent dataChangedEvent)
         {
             _dataChangedEvent = dataChangedEvent;
             _dictionary = new Dictionary<Type, Type>();
@@ -31,7 +31,25 @@ namespace ShopInsights.Services
         public void Add(Type dataType, Type eventType)
         {
             EnsureEventType(dataType, eventType);
+            EnsureCtor(dataType, eventType);
             _dictionary.Add(dataType, eventType);
+        }
+
+        void EnsureCtor(Type dataType, Type eventType)
+        {
+            var ctor = eventType.GetConstructors().FirstOrDefault();
+            if (ctor != null)
+            {
+                var parameters = ctor.GetParameters();
+                if (parameters.Length == 1)
+                {
+                    if (parameters[0].ParameterType == dataType)
+                    {
+                        return;
+                    }
+                }
+            }
+            throw new ArgumentException($"The Event {eventType.FullName} has no constructor which accepts {dataType.FullName} as a single parameter.");
         }
 
         void EnsureEventType(Type dataType, Type eventType)

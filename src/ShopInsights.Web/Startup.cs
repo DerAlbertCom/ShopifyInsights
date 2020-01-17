@@ -24,11 +24,17 @@ namespace ShopInsights.Web
     public class Startup
     {
         readonly IHostEnvironment _hostEnvironment;
+        Assembly[] _assembliesToScan;
 
         public Startup(IConfiguration configuration, IHostEnvironment hostEnvironment)
         {
             _hostEnvironment = hostEnvironment;
             Configuration = configuration;
+            _assembliesToScan = new[]
+            {
+                typeof(SourceDataChangedService).Assembly,
+                typeof(ShopifyServiceCollectionExtensions).Assembly
+            };
         }
 
         IConfiguration Configuration { get; }
@@ -49,17 +55,14 @@ namespace ShopInsights.Web
         void ConfigureInfrastructure(IServiceCollection services)
         {
             services.AddShopifyServices();
-            var assembliesToScan = new[]
-            {
-                typeof(SourceDataChangedService).Assembly,
-                typeof(ShopifyServiceCollectionExtensions).Assembly
-            };
-            services.AddMediatR(assembliesToScan);
+
+            services.AddMediatR(_assembliesToScan);
         }
 
         void ConfigureAppServices(IServiceCollection services)
         {
             services.AddCoreServices();
+            services.AddDataChangedEvents(_assembliesToScan);
             services.AddTransient<IFetchAndStoreUpdatedShopifyDataService, FetchAndStoreUpdatedShopifyDataService>();
             services.AddTransient<IExistingShopifyDataReader, ExistingShopifyDataReader>();
         }
