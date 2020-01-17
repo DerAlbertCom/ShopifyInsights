@@ -265,3 +265,4 @@ __pycache__/
 coverage/
 test-results/
 global.json
+.DS_Store

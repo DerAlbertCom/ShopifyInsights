@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ShopifySharp" Version="4.21.7" />
+        <PackageReference Include="ShopifySharp" Version="4.25.0" />
         <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="$(MicrosoftExtensionsVersion)" />
         <PackageReference Include="Newtonsoft.Json" Version="$(JsonVersion)" />
 

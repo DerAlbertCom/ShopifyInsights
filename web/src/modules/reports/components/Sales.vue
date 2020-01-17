@@ -55,7 +55,7 @@ const Sales = Vue.extend({
   },
   methods: {
     async fetchData () {
-      const url = `https://localhost:5001/api/reports/sales?from=2019-01-01&to=2019-11-02&location=all`;
+      const url = `https://localhost:5001/api/reports/weeks?from=2019-01-01&to=2019-11-02&location=all`;
       const response = await fetch(url);
       const result = await response.json();
       this.dataCollection = {

@@ -20,11 +20,6 @@ namespace ShopInsights.Web.Pages
 
         }
 
-        public async Task OnPostImport(CancellationToken cancellationToken)
-        {
-     //       await _importer.ImportExistingOrdersAsync(cancellationToken);
-        }
-
         public Task OnPostUpdate()
         {
             return Task.CompletedTask;

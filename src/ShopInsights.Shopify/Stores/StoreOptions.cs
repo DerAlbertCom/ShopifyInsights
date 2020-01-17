@@ -10,7 +10,9 @@ namespace ShopInsights.Shopify.Stores
 
         public string GetFilePath()
         {
+#pragma warning disable 618
             var filePath =  FilePath;
+#pragma warning restore 618
 
             if (Path.IsPathRooted(filePath))
             {
