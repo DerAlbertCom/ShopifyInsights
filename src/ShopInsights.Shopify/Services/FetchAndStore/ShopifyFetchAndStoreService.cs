@@ -13,13 +13,13 @@ namespace ShopInsights.Shopify.Services.FetchAndStore
 {
     public abstract class ShopifyFetchAndStoreService<T> : IShopifyFetchAndStoreService<T> where T : ShopifyObject
     {
-        private readonly IOptions<StoreOptions> _optionsAccessor;
-        private readonly IShopifyFetcher<T> _fetcher;
-        private readonly IShopifyStorage<T> _storage;
-        private readonly IShopifyFilesWriter<T> _filesWriter;
-        private readonly string _folder;
-        private readonly Func<T, DateTimeOffset?> _updateSelector;
-        private readonly ILogger _logger;
+        readonly IOptions<StoreOptions> _optionsAccessor;
+        readonly IShopifyFetcher<T> _fetcher;
+        readonly IShopifyStorage<T> _storage;
+        readonly IShopifyFilesWriter<T> _filesWriter;
+        readonly string _folder;
+        readonly Func<T, DateTimeOffset?> _updateSelector;
+        readonly ILogger _logger;
 
         protected ShopifyFetchAndStoreService(
             IOptions<StoreOptions> optionsAccessor,
@@ -56,7 +56,7 @@ namespace ShopInsights.Shopify.Services.FetchAndStore
                 return;
             }
 
-            _storage.AddRange(products);
+            await _storage.AddRange(products);
 
             _logger.LogInformation("Storing newly fetched {type}s", typeof(T).Name);
 

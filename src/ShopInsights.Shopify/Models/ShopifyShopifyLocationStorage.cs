@@ -5,9 +5,9 @@ using ShopInsights.Services;
 
 namespace ShopInsights.Shopify.Models
 {
-    public class ShopifyMetaFieldStorage : ShopifyStorage<MetaField>, IShopifyMetaFieldStorage
+    public class ShopifyShopifyLocationStorage : ShopifyStorage<Location>, IShopifyLocationStorage
     {
-        public ShopifyMetaFieldStorage(IOptions<ShopInstanceOptions> optionsAccessor,
+        public ShopifyShopifyLocationStorage(IOptions<ShopInstanceOptions> optionsAccessor,
             ISourceDataChangedService changedService) : base(changedService, optionsAccessor, c => c.CreatedAt,
             c => c.UpdatedAt)
         {

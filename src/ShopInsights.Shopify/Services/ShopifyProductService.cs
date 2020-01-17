@@ -9,7 +9,7 @@ namespace ShopInsights.Shopify.Services
 {
     internal class ShopifyProductService : IShopifyProductService
     {
-        private readonly ProductService _productService;
+        readonly ProductService _productService;
 
         public ShopifyProductService(ProductService productService)
         {

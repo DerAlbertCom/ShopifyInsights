@@ -56,12 +56,12 @@ namespace ShopInsights.Shopify.Stores
             return Task.CompletedTask;
         }
 
-        private void UpdateItems(T[] existingOrders)
+        void UpdateItems(T[] existingOrders)
         {
             _storage.AddRange(existingOrders);
         }
 
-        private bool IsImportFile(IFileInfo fileInfo)
+        bool IsImportFile(IFileInfo fileInfo)
         {
             if (fileInfo.IsDirectory)
             {
@@ -76,8 +76,8 @@ namespace ShopInsights.Shopify.Stores
             return (fileInfo.Name.EndsWith(".json", StringComparison.OrdinalIgnoreCase));
         }
 
-        private readonly IShopifyStorage<T> _storage;
-        private readonly ILogger _logger;
-        private readonly string _startFile;
+        readonly IShopifyStorage<T> _storage;
+        readonly ILogger _logger;
+        readonly string _startFile;
     }
 }

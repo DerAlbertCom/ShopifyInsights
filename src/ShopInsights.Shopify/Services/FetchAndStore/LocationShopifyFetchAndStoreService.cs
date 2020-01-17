@@ -9,7 +9,7 @@ namespace ShopInsights.Shopify.Services.FetchAndStore
     public class LocationShopifyFetchAndStoreService : ShopifyFetchAndStoreService<Location>, ILocationShopifyFetchAndStoreService
     {
         public LocationShopifyFetchAndStoreService(IOptions<StoreOptions> optionsAccessor, IShopifyLocationFetcher fetcher,
-            ILocationStorage storage, IShopifyLocationFilesWriter filesWriter, ILogger<LocationShopifyFetchAndStoreService> logger) : base(optionsAccessor, fetcher, storage,
+            IShopifyLocationStorage storage, IShopifyLocationFilesWriter filesWriter, ILogger<LocationShopifyFetchAndStoreService> logger) : base(optionsAccessor, fetcher, storage,
             filesWriter, "locations", Location => Location.UpdatedAt, logger)
         {
         }

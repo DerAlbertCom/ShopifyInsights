@@ -11,7 +11,7 @@ namespace ShopInsights.Web.Controllers
     [Route("api/maps")]
     public class MapsController : Controller
     {
-        private readonly IShopifyOrderStorage _shopifyOrderStorage;
+        readonly IShopifyOrderStorage _shopifyOrderStorage;
 
         public MapsController(IShopifyOrderStorage shopifyOrderStorage)
         {

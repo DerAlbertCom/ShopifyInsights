@@ -6,7 +6,7 @@ namespace ShopInsights.Shopify.Stores
 {
     public class ShopifyLocationFilesReader : ShopifyFilesReader<Location>, IShopifyLocationFilesReader
     {
-        public ShopifyLocationFilesReader(ILocationStorage storage, ILogger<ShopifyLocationFilesReader> logger):base(storage,"locations", logger)
+        public ShopifyLocationFilesReader(IShopifyLocationStorage storage, ILogger<ShopifyLocationFilesReader> logger):base(storage,"locations", logger)
         {
 
         }

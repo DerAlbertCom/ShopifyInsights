@@ -9,7 +9,7 @@ namespace ShopInsights.Shopify.Services
 {
     internal class ShopifyMetaFieldService : IShopifyMetaFieldService
     {
-        private readonly MetaFieldService _metaFieldService;
+        readonly MetaFieldService _metaFieldService;
 
         public ShopifyMetaFieldService(MetaFieldService metaFieldService)
         {

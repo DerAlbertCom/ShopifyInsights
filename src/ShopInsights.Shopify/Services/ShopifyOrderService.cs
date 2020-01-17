@@ -9,7 +9,7 @@ namespace ShopInsights.Shopify.Services
 {
     internal class ShopifyOrderService : IShopifyOrderService
     {
-        private readonly OrderService _orderService;
+        readonly OrderService _orderService;
 
         public ShopifyOrderService(OrderService orderService)
         {

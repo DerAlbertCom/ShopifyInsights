@@ -7,7 +7,7 @@ namespace ShopInsights.Shopify.Services
 {
     internal class ShopifyLocationService : IShopifyLocationService
     {
-        private readonly LocationService _locationService;
+        readonly LocationService _locationService;
 
         public ShopifyLocationService(LocationService locationService)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ShopifySharp;
 
 namespace ShopInsights.Shopify.Models
@@ -14,6 +15,6 @@ namespace ShopInsights.Shopify.Models
         IEnumerable<T> All { get; }
         IEnumerable<DateTime> AllDates { get; }
         void ResetModifiedDates();
-        void AddRange(IEnumerable<T> newOrders);
+        Task AddRange(IEnumerable<T> items);
     }
 }

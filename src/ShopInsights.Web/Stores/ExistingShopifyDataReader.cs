@@ -58,7 +58,7 @@ namespace ShopInsights.Web.Stores
         }
 
 
-        private void EnsurePath(string path)
+        void EnsurePath(string path)
         {
             if (!Directory.Exists(path))
             {
@@ -66,12 +66,12 @@ namespace ShopInsights.Web.Stores
             }
         }
 
-        private readonly IShopifyOrderFilesReader _shopifyOrderReader;
-        private readonly IShopifyProductFilesReader _shopifyProductReader;
-        private readonly IShopifyCustomerFilesReader _shopifyCustomerReader;
-        private readonly IShopifyMetaFieldFilesReader _shopifyMetaFieldReader;
-        private readonly IShopifyLocationFilesReader _shopifyLocationReader;
-        private readonly ILogger<ExistingShopifyDataReader> _logger;
-        private readonly IOptions<StoreOptions> _optionsAccessor;
+        readonly IShopifyOrderFilesReader _shopifyOrderReader;
+        readonly IShopifyProductFilesReader _shopifyProductReader;
+        readonly IShopifyCustomerFilesReader _shopifyCustomerReader;
+        readonly IShopifyMetaFieldFilesReader _shopifyMetaFieldReader;
+        readonly IShopifyLocationFilesReader _shopifyLocationReader;
+        readonly ILogger<ExistingShopifyDataReader> _logger;
+        readonly IOptions<StoreOptions> _optionsAccessor;
     }
 }

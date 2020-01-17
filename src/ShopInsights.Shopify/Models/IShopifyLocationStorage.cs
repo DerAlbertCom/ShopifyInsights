@@ -2,7 +2,7 @@
 
 namespace ShopInsights.Shopify.Models
 {
-    public interface ILocationStorage : IShopifyStorage<Location>
+    public interface IShopifyLocationStorage : IShopifyStorage<Location>
     {
 
     }

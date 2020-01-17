@@ -9,7 +9,7 @@ namespace ShopInsights.Web.Tests.Controllers
 {
     public class PingControllerTests : ControllerTests
     {
-        private readonly HttpClient _client;
+        readonly HttpClient _client;
 
         public PingControllerTests(TestWebApplicationFactory factory)
         {

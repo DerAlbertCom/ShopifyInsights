@@ -5,7 +5,7 @@ namespace ShopInsights.Shopify.Services
 {
     public class ShopifyFactory : IShopifyFactory
     {
-        private readonly IOptions<ShopifyOptions> _optionsAccessor;
+        readonly IOptions<ShopifyOptions> _optionsAccessor;
 
         public ShopifyFactory(IOptions<ShopifyOptions> optionsAccessor)
         {

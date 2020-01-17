@@ -8,10 +8,10 @@ using ShopifySharp;
 
 namespace ShopInsights.Shopify.Services
 {
-    class ProductShopifyFetcher : IProductShopifyFetcher
+    internal class ProductShopifyFetcher : IProductShopifyFetcher
     {
-        private readonly IShopifyFactory _shopifyFactory;
-        private readonly ILogger<ProductShopifyFetcher> _logger;
+        readonly IShopifyFactory _shopifyFactory;
+        readonly ILogger<ProductShopifyFetcher> _logger;
 
         public ProductShopifyFetcher(IShopifyFactory shopifyFactory, ILogger<ProductShopifyFetcher> logger)
         {

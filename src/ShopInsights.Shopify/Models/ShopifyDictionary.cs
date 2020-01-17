@@ -14,7 +14,7 @@ namespace ShopInsights.Shopify.Models
             _keySelector = keyKeySelector;
         }
 
-        private readonly Func<TShopify, TKey?> _keySelector;
+        readonly Func<TShopify, TKey?> _keySelector;
         public void Add(TShopify item)
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
@@ -71,6 +71,6 @@ namespace ShopInsights.Shopify.Models
             return _items.GetEnumerator();
         }
 
-        private readonly IDictionary<TKey, TShopify> _items = new ConcurrentDictionary<TKey, TShopify>();
+        readonly IDictionary<TKey, TShopify> _items = new ConcurrentDictionary<TKey, TShopify>();
     }
 }

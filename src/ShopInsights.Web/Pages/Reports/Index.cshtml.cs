@@ -10,10 +10,10 @@ namespace ShopInsights.Web.Pages.Reports
 {
     public class Index : PageModel
     {
-        public Index(IShopifyOrderStorage shopifyOrderStorage, ILocationStorage locationStorage)
+        public Index(IShopifyOrderStorage shopifyOrderStorage, IShopifyLocationStorage shopifyLocationStorage)
         {
             _shopifyOrderStorage = shopifyOrderStorage;
-            _locationStorage = locationStorage;
+            _shopifyLocationStorage = shopifyLocationStorage;
         }
 
         public void OnGet(DateTime from, DateTime to)
@@ -24,7 +24,7 @@ namespace ShopInsights.Web.Pages.Reports
 
             LocationItems.Add(new SelectListItem("Alle","all"));
             LocationItems.Add(new SelectListItem("Online",""));
-            foreach (var location in _locationStorage.All)
+            foreach (var location in _shopifyLocationStorage.All)
             {
                 LocationItems.Add(new SelectListItem(location.Name,location.Id.Value.ToString()));
 
@@ -35,7 +35,7 @@ namespace ShopInsights.Web.Pages.Reports
         public DateTime To { get; set; }
 
         public List<SelectListItem> LocationItems { get; } = new List<SelectListItem>();
-        private readonly IShopifyOrderStorage _shopifyOrderStorage;
-        private readonly ILocationStorage _locationStorage;
+        readonly IShopifyOrderStorage _shopifyOrderStorage;
+        readonly IShopifyLocationStorage _shopifyLocationStorage;
     }
 }

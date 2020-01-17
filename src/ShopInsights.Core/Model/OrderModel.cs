@@ -5,7 +5,7 @@ namespace ShopInsights.Model
 {
     public class OrderModel
     {
-        private readonly List<LineModel> _lines = new List<LineModel>();
+        readonly List<LineModel> _lines = new List<LineModel>();
 
         public string OrderId { get; set; }
 

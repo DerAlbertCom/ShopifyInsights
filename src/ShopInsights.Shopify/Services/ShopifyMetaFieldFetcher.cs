@@ -8,10 +8,10 @@ using ShopifySharp;
 
 namespace ShopInsights.Shopify.Services
 {
-    class ShopifyMetaFieldFetcher : IShopifyMetaFieldFetcher
+    internal class ShopifyMetaFieldFetcher : IShopifyMetaFieldFetcher
     {
-        private readonly IShopifyMetaFieldService _metaFieldService;
-        private readonly ILogger<ShopifyMetaFieldFetcher> _logger;
+        readonly IShopifyMetaFieldService _metaFieldService;
+        readonly ILogger<ShopifyMetaFieldFetcher> _logger;
 
         public ShopifyMetaFieldFetcher(IShopifyMetaFieldService metaFieldService, ILogger<ShopifyMetaFieldFetcher> logger)
         {

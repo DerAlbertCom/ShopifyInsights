@@ -162,7 +162,7 @@ namespace ShopInsights.Web.Controllers
             return dt.AddDays(-1 * diff).Date;
         }
 
-        private List<(DateTime date, decimal sum)> SumSalesPerDay(DateTime @from, DateTime to, string location)
+        List<(DateTime date, decimal sum)> SumSalesPerDay(DateTime @from, DateTime to, string location)
                                    {
             var list = new List<(DateTime date, decimal sum)>();
             var current = @from;
@@ -188,6 +188,6 @@ namespace ShopInsights.Web.Controllers
             return list;
         }
 
-        private readonly IShopifyOrderStorage _storage;
+        readonly IShopifyOrderStorage _storage;
     }
 }

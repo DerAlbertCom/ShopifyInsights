@@ -27,7 +27,7 @@ namespace ShopInsights.Core.Tests
             result.Day.Should().Be(31);
         }
 
-        private static TimeZoneInfo GetDefaultTimeZone()
+        static TimeZoneInfo GetDefaultTimeZone()
         {
             return TimeZoneInfo
                        .GetSystemTimeZones()

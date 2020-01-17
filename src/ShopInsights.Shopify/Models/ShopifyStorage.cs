@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using ShopifySharp;
 using ShopInsights.Configuration;
+using ShopInsights.Services;
 
 namespace ShopInsights.Shopify.Models
 {
     public abstract class ShopifyStorage<T> : IShopifyStorage<T> where T : ShopifyObject
     {
-        private readonly Func<T, DateTimeOffset?> _updateSelector;
-        private readonly Func<T, DateTimeOffset?> _createSelector;
+        readonly Func<T, DateTimeOffset?> _updateSelector;
+        readonly ISourceDataChangedService _changedService;
+        readonly Func<T, DateTimeOffset?> _createSelector;
 
-        protected ShopifyStorage(IOptions<ShopInstanceOptions> optionsAccessor, Func<T, DateTimeOffset?> createSelector,
+        protected ShopifyStorage(ISourceDataChangedService changedService, IOptions<ShopInstanceOptions> optionsAccessor, Func<T, DateTimeOffset?> createSelector,
             Func<T, DateTimeOffset?> updateSelector)
         {
             _timeZoneInfo = optionsAccessor.Value.TimeZoneInfo;
+            _changedService = changedService;
             _createSelector = createSelector ?? throw new ArgumentNullException(nameof(createSelector));
             _updateSelector = updateSelector ?? throw new ArgumentNullException(nameof(updateSelector));
         }
@@ -65,42 +69,46 @@ namespace ShopInsights.Shopify.Models
             _modifiedDates.Clear();
         }
 
-        public void AddRange(IEnumerable<T> newOrders)
+        public async Task AddRange(IEnumerable<T> items)
         {
-            foreach (var newOrder in newOrders)
+            foreach (var item in items)
             {
-                var createdNew = _createSelector(newOrder);
-                var updatedNew = _updateSelector(newOrder);
+                var createdNew = _createSelector(item);
+                var updatedNew = _updateSelector(item);
                 if (!createdNew.HasValue)
                 {
                     continue;
                 }
 
                 var orderDictionary = GetDictionary(createdNew.Value);
-                if (orderDictionary.TryGetValue(newOrder.Id.Value, out var existingOrder))
+                if (orderDictionary.TryGetValue(item.Id.Value, out var existingOrder))
                 {
                     var updatedExisting = _updateSelector(existingOrder);
 
                     if (!updatedExisting.HasValue)
                     {
-                        orderDictionary.Update(newOrder);
-                        UpdateModifiedItemDate(newOrder);
+                        orderDictionary.Update(item);
+                        UpdateModifiedItemDate(item);
+                        await _changedService.Updated(item);
                     }
                     else if (updatedNew.Value > updatedExisting.Value)
                     {
-                        orderDictionary.Update(newOrder);
-                        UpdateModifiedItemDate(newOrder);
+                        orderDictionary.Update(item);
+                        UpdateModifiedItemDate(item);
+                        await _changedService.Updated(item);
                     }
                 }
                 else
                 {
-                    orderDictionary.Add(newOrder);
-                    UpdateModifiedItemDate(newOrder);
+                    orderDictionary.Add(item);
+                    UpdateModifiedItemDate(item);
+                    await _changedService.Added(item);
                 }
             }
+
         }
 
-        private void UpdateModifiedItemDate(T newOrder)
+        void UpdateModifiedItemDate(T newOrder)
         {
             var created = _createSelector(newOrder);
 
@@ -111,7 +119,7 @@ namespace ShopInsights.Shopify.Models
             _allItemsDictionary[newOrder.Id.Value] = newOrder;
         }
 
-        private ShopifyDictionary<long,T> GetDictionary(DateTimeOffset orderCreatedAt)
+        ShopifyDictionary<long,T> GetDictionary(DateTimeOffset orderCreatedAt)
         {
             var date = _timeZoneInfo.GetTimeZoneCorrectedDate(orderCreatedAt);
 
@@ -124,11 +132,11 @@ namespace ShopInsights.Shopify.Models
             return _dictionary[date];
         }
 
-        private readonly Dictionary<DateTime, ShopifyDictionary<long,T>>
+        readonly Dictionary<DateTime, ShopifyDictionary<long,T>>
             _dictionary = new Dictionary<DateTime, ShopifyDictionary<long,T>>();
 
-        private readonly Dictionary<long,T> _allItemsDictionary = new Dictionary<long, T>();
-        private readonly TimeZoneInfo _timeZoneInfo;
-        private readonly HashSet<DateTime> _modifiedDates = new HashSet<DateTime>();
+        readonly Dictionary<long,T> _allItemsDictionary = new Dictionary<long, T>();
+        readonly TimeZoneInfo _timeZoneInfo;
+        readonly HashSet<DateTime> _modifiedDates = new HashSet<DateTime>();
     }
 }

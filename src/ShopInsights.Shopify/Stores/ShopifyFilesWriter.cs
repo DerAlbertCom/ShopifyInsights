@@ -10,9 +10,9 @@ namespace ShopInsights.Shopify.Stores
 {
     public abstract class ShopifyFilesWriter<T> : IShopifyFilesWriter<T> where T : ShopifyObject
     {
-        private readonly IShopifyStorage<T> _storage;
-        private readonly string _startFile;
-        private readonly ILogger _logger;
+        readonly IShopifyStorage<T> _storage;
+        readonly string _startFile;
+        readonly ILogger _logger;
 
         protected ShopifyFilesWriter(IShopifyStorage<T> storage, string startFile, ILogger logger)
         {

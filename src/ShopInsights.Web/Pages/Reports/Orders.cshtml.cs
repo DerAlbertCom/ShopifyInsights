@@ -11,14 +11,14 @@ namespace ShopInsights.Web.Pages.Reports
 {
     public class Orders : PageModel
     {
-        private readonly IShopifyOrderStorage _orderStorage;
-        private readonly ILocationStorage _locationStorage;
-        private TimeZoneInfo _timeZone;
+        readonly IShopifyOrderStorage _orderStorage;
+        readonly IShopifyLocationStorage _shopifyLocationStorage;
+        TimeZoneInfo _timeZone;
 
-        public Orders(IShopifyOrderStorage orderStorage, ILocationStorage locationStorage, IOptions<ShopInstanceOptions> optionsAccessor)
+        public Orders(IShopifyOrderStorage orderStorage, IShopifyLocationStorage shopifyLocationStorage, IOptions<ShopInstanceOptions> optionsAccessor)
         {
             _orderStorage = orderStorage;
-            _locationStorage = locationStorage;
+            _shopifyLocationStorage = shopifyLocationStorage;
             _timeZone = optionsAccessor.Value.TimeZoneInfo;
         }
 
@@ -29,7 +29,7 @@ namespace ShopInsights.Web.Pages.Reports
                 .ToArray();
 
            Locations = new Dictionary<string, DateTime[]>();
-           foreach (var location in _locationStorage.All)
+           foreach (var location in _shopifyLocationStorage.All)
            {
                var dates = locationDates.Where(ld => ld.LocationId == location.Id)
                    .Select(o => o.OrderDate).Distinct().OrderBy(d => d).ToArray();

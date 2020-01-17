@@ -9,13 +9,13 @@ namespace ShopInsights.Web.Stores
 {
     public class FetchAndStoreUpdatedShopifyDataService : IFetchAndStoreUpdatedShopifyDataService
     {
-        private readonly IShopifyProductShopifyFetchAndStoreService _shopifyProductShopifyFetchAndStoreService;
-        private readonly IShopifyCustomerShopifyFetchAndStoreService _shopifyCustomerShopifyFetchAndStoreService;
-        private readonly IShopifyOrderShopifyFetchAndStoreService _shopifyOrderShopifyFetchAndStoreService;
-        private readonly IShopifyMetaFieldShopifyFetchAndStoreService _shopifyMetaFieldShopifyFetchAndStoreService;
-        private readonly ILocationShopifyFetchAndStoreService _locationShopifyFetchAndStoreService;
-        private readonly IOptions<ShopifyOptions> _optionsAccessor;
-        private readonly ILogger<FetchAndStoreUpdatedShopifyDataService> _logger;
+        readonly IShopifyProductShopifyFetchAndStoreService _shopifyProductShopifyFetchAndStoreService;
+        readonly IShopifyCustomerShopifyFetchAndStoreService _shopifyCustomerShopifyFetchAndStoreService;
+        readonly IShopifyOrderShopifyFetchAndStoreService _shopifyOrderShopifyFetchAndStoreService;
+        readonly IShopifyMetaFieldShopifyFetchAndStoreService _shopifyMetaFieldShopifyFetchAndStoreService;
+        readonly ILocationShopifyFetchAndStoreService _locationShopifyFetchAndStoreService;
+        readonly IOptions<ShopifyOptions> _optionsAccessor;
+        readonly ILogger<FetchAndStoreUpdatedShopifyDataService> _logger;
 
         public FetchAndStoreUpdatedShopifyDataService(
             IShopifyProductShopifyFetchAndStoreService shopifyProductShopifyFetchAndStoreService,

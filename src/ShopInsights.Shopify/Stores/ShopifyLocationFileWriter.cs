@@ -6,7 +6,7 @@ namespace ShopInsights.Shopify.Stores
 {
     public class ShopifyLocationFileWriter : ShopifyFilesWriter<Location>, IShopifyLocationFilesWriter
     {
-        public ShopifyLocationFileWriter(ILocationStorage storage, ILogger<ShopifyLocationFileWriter> logger) : base(storage, "locations", logger)
+        public ShopifyLocationFileWriter(IShopifyLocationStorage storage, ILogger<ShopifyLocationFileWriter> logger) : base(storage, "locations", logger)
         {
         }
     }

@@ -11,8 +11,8 @@ namespace ShopInsights.Web.Pages.Reports
 {
     public class OrdersList : PageModel
     {
-        private readonly IShopifyOrderStorage _orderStorage;
-        private TimeZoneInfo _timeZone;
+        readonly IShopifyOrderStorage _orderStorage;
+        TimeZoneInfo _timeZone;
 
         public OrdersList(IOptions<ShopInstanceOptions> optionsAccessor, IShopifyOrderStorage orderStorage)
         {

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using ShopifySharp;
 using ShopInsights.Infrastructure;
+using ShopInsights.Services;
 using ShopInsights.Shopify;
 using ShopInsights.Shopify.Services;
 using ShopInsights.Shopify.Stores;
@@ -20,7 +23,7 @@ namespace ShopInsights.Web
 {
     public class Startup
     {
-        private readonly IHostEnvironment _hostEnvironment;
+        readonly IHostEnvironment _hostEnvironment;
 
         public Startup(IConfiguration configuration, IHostEnvironment hostEnvironment)
         {
@@ -28,7 +31,7 @@ namespace ShopInsights.Web
             Configuration = configuration;
         }
 
-        private IConfiguration Configuration { get; }
+        IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -36,26 +39,37 @@ namespace ShopInsights.Web
             services.AddRazorPages();
             services.AddControllers();
 
-            ShopifyServiceCollectionExtensions.AddShopifyServices(services);
-
             ConfigureOptions(services);
             ConfigureAppServices(services);
             ConfigureBackgroundServices(services);
-
+            ConfigureInfrastructure(services);
             ShopifyService.SetGlobalExecutionPolicy(new SmartRetryExecutionPolicy());
         }
 
-        private void ConfigureAppServices(IServiceCollection services)
+        void ConfigureInfrastructure(IServiceCollection services)
         {
+            services.AddShopifyServices();
+            var assembliesToScan = new[]
+            {
+                typeof(SourceDataChangedService).Assembly,
+                typeof(ShopifyServiceCollectionExtensions).Assembly
+            };
+            services.AddMediatR(assembliesToScan);
+        }
+
+        void ConfigureAppServices(IServiceCollection services)
+        {
+            services.AddCoreServices();
             services.AddTransient<IFetchAndStoreUpdatedShopifyDataService, FetchAndStoreUpdatedShopifyDataService>();
             services.AddTransient<IExistingShopifyDataReader, ExistingShopifyDataReader>();
         }
-        private void ConfigureBackgroundServices(IServiceCollection services)
+
+        void ConfigureBackgroundServices(IServiceCollection services)
         {
             services.AddHostedService<ShopifyDataInitialization>();
         }
 
-        private void ConfigureOptions(IServiceCollection services)
+        void ConfigureOptions(IServiceCollection services)
         {
             services.AddTransient<IValidateOptions<OrderStoreOptions>, OrderStoreOptionsValidator>();
 

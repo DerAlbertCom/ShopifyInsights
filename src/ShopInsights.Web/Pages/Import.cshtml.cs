@@ -28,7 +28,7 @@ namespace ShopInsights.Web.Pages
 
         public bool ShowImport => !_shopifyOrderStorage.All.Any();
 
-        private readonly IShopifyOrderStorage _shopifyOrderStorage;
-        private readonly IShopifyOrderFilesReader _reader;
+        readonly IShopifyOrderStorage _shopifyOrderStorage;
+        readonly IShopifyOrderFilesReader _reader;
     }
 }

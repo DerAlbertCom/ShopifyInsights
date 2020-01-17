@@ -8,10 +8,10 @@ using ShopifySharp;
 
 namespace ShopInsights.Shopify.Services
 {
-    class ShopifyLocationFetcher : IShopifyLocationFetcher
+    internal class ShopifyLocationFetcher : IShopifyLocationFetcher
     {
-        private readonly IShopifyLocationService _locationService;
-        private readonly ILogger<ShopifyLocationFetcher> _logger;
+        readonly IShopifyLocationService _locationService;
+        readonly ILogger<ShopifyLocationFetcher> _logger;
 
         public ShopifyLocationFetcher(IShopifyLocationService locationService, ILogger<ShopifyLocationFetcher> logger)
         {

@@ -227,7 +227,7 @@ namespace ShopInsights.Shopify.Tests.Models
             Subject.DatesWithModifiedItems.Should().BeEmpty();
         }
 
-        private Order CreateOrder(int i, int year, int month, int day)
+        Order CreateOrder(int i, int year, int month, int day)
         {
             var order = new Order
             {
@@ -239,6 +239,6 @@ namespace ShopInsights.Shopify.Tests.Models
             return order;
         }
 
-        private readonly TimeSpan _offset = TimeSpan.FromHours(2);
+        readonly TimeSpan _offset = TimeSpan.FromHours(2);
     }
 }

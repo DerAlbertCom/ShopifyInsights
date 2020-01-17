@@ -10,7 +10,7 @@ namespace ShopInsights.Web.Pages
 {
     public class PrivacyModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        readonly ILogger<PrivacyModel> _logger;
 
         public PrivacyModel(ILogger<PrivacyModel> logger)
         {

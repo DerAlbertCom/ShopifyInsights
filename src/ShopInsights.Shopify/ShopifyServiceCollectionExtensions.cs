@@ -15,7 +15,7 @@ namespace ShopInsights.Shopify
             services.TryAddSingleton<IShopifyProductStorage, ShopifyProductStorage>();
             services.TryAddSingleton<IShopifyCustomerStorage, ShopifyCustomerStorage>();
             services.TryAddSingleton<IShopifyMetaFieldStorage, ShopifyMetaFieldStorage>();
-            services.TryAddSingleton<ILocationStorage, LocationStorage>();
+            services.TryAddSingleton<IShopifyLocationStorage, ShopifyShopifyLocationStorage>();
 
             services.AddTransient<IShopifyProductShopifyFetchAndStoreService, ShopifyProductShopifyFetchAndStoreService>();
             services.AddTransient<IShopifyCustomerShopifyFetchAndStoreService, ShopifyCustomerShopifyFetchAndStoreService>();

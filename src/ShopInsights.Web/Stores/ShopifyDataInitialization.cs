@@ -8,9 +8,9 @@ namespace ShopInsights.Web.Stores
 {
     public class ShopifyDataInitialization : BackgroundService
     {
-        private readonly IExistingShopifyDataReader _reader;
-        private readonly IFetchAndStoreUpdatedShopifyDataService _storeUpdatedShopifyDataService;
-        private readonly ILogger<ShopifyDataInitialization> _logger;
+        readonly IExistingShopifyDataReader _reader;
+        readonly IFetchAndStoreUpdatedShopifyDataService _storeUpdatedShopifyDataService;
+        readonly ILogger<ShopifyDataInitialization> _logger;
 
         public ShopifyDataInitialization(IExistingShopifyDataReader reader, IFetchAndStoreUpdatedShopifyDataService storeUpdatedShopifyDataService, ILogger<ShopifyDataInitialization> logger)
         {
