@@ -27,47 +27,49 @@ import fetchData from '@/services/webService';
 
 type Data = {
   selectedDates: string[]
-  salesData : SalesData | null
+  salesData: SalesData | null
 }
 
-type SalesData = {
-}
+type SalesData = {}
 
 const Sales = Vue.extend({
   components: {},
-  data () : Data {
+  data(): Data {
     return {
       selectedDates: [],
       salesData: null
     }
   },
   computed: {
-    localeDate () : string[] {
+    localeDate(): string[] {
       if (this.selectedDates.length === 2) {
         return [getLocaleIsoDate(this.selectedDates[0]), getLocaleIsoDate(this.selectedDates[1])]
       }
       return []
     },
-    cantShow () : boolean {
+    cantShow(): boolean {
       return this.selectedDates.length !== 2;
     }
   },
-  mounted () {
+  mounted() {
+
   },
   methods: {
-    async loadData () {
+    async loadData() {
+      // noinspection JSPotentiallyInvalidTargetOfIndexedPropertyAccess
       return fetchData<SalesData>(`api/report/salesfordate&from=${this.localeDate[0]}&to=${this.localeDate[1]}`)
     }
   }
-})
+});
 
-function getLocaleIsoDate (dateString: string) {
-  let date = new Date(dateString)
+function getLocaleIsoDate(dateString: string) {
+  let date = new Date(dateString);
   const z = date.getTimezoneOffset() * 60 * 1000;
   // @ts-ignore
   const dateLocal = date - z;
   date = new Date(dateLocal);
   return date.toISOString().substring(0, 10);
 }
+
 export default Sales
 </script>

@@ -13,6 +13,7 @@
 import Vue from 'vue'
 import LineChart from '@/components/LineChart'
 import { ChartData, ChartOptions } from 'chart.js';
+
 type IData = {
   dataCollection: ChartData,
   chartOptions: ChartOptions,
@@ -23,7 +24,7 @@ const Sales = Vue.extend({
   components: {
     LineChart
   },
-  data () : IData {
+  data(): IData {
     return {
       dataCollection: {},
       chartOptions: {
@@ -42,7 +43,7 @@ const Sales = Vue.extend({
     }
   },
   computed: {
-    styles () {
+    styles() {
       return {
         // @ts-ignore
         height: `${this.height}px`,
@@ -50,11 +51,11 @@ const Sales = Vue.extend({
       }
     }
   },
-  async mounted () {
+  async mounted() {
     await this.fetchData()
   },
   methods: {
-    async fetchData () {
+    async fetchData() {
       const url = `https://localhost:5001/api/reports/weeks?from=2019-01-01&to=2019-11-02&location=all`;
       const response = await fetch(url);
       const result = await response.json();
@@ -74,6 +75,6 @@ const Sales = Vue.extend({
       }
     }
   }
-})
+});
 export default Sales
 </script>

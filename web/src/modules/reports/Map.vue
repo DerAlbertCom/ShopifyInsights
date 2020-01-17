@@ -14,7 +14,7 @@
       />
 
       <vl-layer-tile id="osm">
-        <vl-source-osm />
+        <vl-source-osm url="" />
       </vl-layer-tile>
 
       <vl-layer-vector>
@@ -40,9 +40,8 @@ type data = {
   rotation: number
 }
 const Reports = Vue.extend({
-  components: {
-  },
-  data () : data {
+  components: {},
+  data(): data {
     return {
       zoom: 5,
       center: [11, 50],
@@ -51,25 +50,25 @@ const Reports = Vue.extend({
       loading: false
     }
   },
-  async mounted () {
-    this.loading = true
-    const features = await this.loadFeatures()
-    this.features = features.map(Object.freeze)
+  async mounted() {
+    this.loading = true;
+    const features = await this.loadFeatures();
+    this.features = features.map(Object.freeze);
     this.loading = false
   },
   methods: {
     // emulates external source
-    async loadFeatures () : Promise<any[]> {
-      const response = await fetch('https://localhost:5001/api/maps/sales')
-      const features = await response.json()
-      return features
+    async loadFeatures(): Promise<any[]> {
+      const response = await fetch('https://localhost:5001/api/maps/sales');
+      return response.json();
     },
-    layerClicked (a: any, b: any) {
-      console.debug('clicked', a, b)
+    layerClicked(a: any, b: any) {
+      console.debug('clicked', a, b);
       alert(a);
     }
   }
-})
+});
 
 export default Reports
+
 </script>

@@ -12,7 +12,8 @@ module.exports = {
     'no-console': 'off',
     'no-debugger': 'off',
     'indent': ['error', 2],
-    'semi' : 'off'
+    'semi' : 'off',
+    "space-before-function-paren": ["error", "never"],
   },
   parserOptions: {
     parser: '@typescript-eslint/parser'
@@ -28,4 +29,4 @@ module.exports = {
       }
     }
   ]
-}
+};

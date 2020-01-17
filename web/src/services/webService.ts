@@ -1,7 +1,6 @@
+const baseUrl = 'https://localhost:5001/';
 
-const baseUrl = 'https://localhost:5001/'
-
-async function fetchData<T> (url : string): Promise<T> {
+async function fetchData<T>(url: string): Promise<T> {
   const response = await fetch(`${baseUrl}${url}`);
   if (response.ok) {
     return await response.json() as T;
